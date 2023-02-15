@@ -8,7 +8,9 @@ async function getCode() {
 export default async function CodePage() {
   const code = await getCode();
   return (
-    <div><Code code={code} /></div>
+    <div>
+      <Code code={code} />
+    </div>
   )
 }
 

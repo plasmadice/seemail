@@ -50,5 +50,5 @@ export default function handler(
   };
   
   // main() 
-  return main().catch(err => console.error(err));
+  return main().catch(err => err);
 }
