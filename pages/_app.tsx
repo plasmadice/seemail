@@ -1,12 +1,11 @@
-// 1. import `NextUIProvider` component
-import { NextUIProvider } from '@nextui-org/react';
+import { ThemeProvider } from "next-themes";
+import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: any) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // 2. Use at the root of your app
-    <NextUIProvider>
+    <ThemeProvider attribute="class">
       <Component {...pageProps} />
-    </NextUIProvider>
+    </ThemeProvider>
   );
 }
 
