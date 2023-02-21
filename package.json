@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently \"next dev\" \"tailwindcss --input ./app/globals.css --output ./app/output.css --watch\"",
+    "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,6 +13,7 @@
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
+    "concurrently": "^7.6.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "imapflow": "^1.0.120",
