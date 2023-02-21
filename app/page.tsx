@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <div className="mx-auto grid max-w-4xl grid-cols-12 gap-4 bg-zinc-50 p-1 h-screen">
       <div className="col-span-12 rounded-lg border border-zinc-300 bg-gray-600 p-32">
-        {/* <ThemeToggle /> */}
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           toggle
         </button>
