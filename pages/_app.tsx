@@ -1,11 +1,16 @@
-import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo.json";
+import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class">
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <DefaultSeo {...SEO} />
+      <ThemeProvider attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   );
 }
 

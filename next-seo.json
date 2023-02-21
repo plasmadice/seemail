@@ -1,0 +1,16 @@
+{
+  "title": "Next 13 demo project",
+  "titleTemplate": "%s | H",
+  "description": "Nextjs vs Tailwind vs Typescript",
+  "favicon": "/favicon.ico",
+  "additionalMetaTags": [
+    {
+      "property": "author",
+      "content": "H"
+    },
+    {
+      "property": "keywords",
+      "content": ""
+    }
+  ]
+}
