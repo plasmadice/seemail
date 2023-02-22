@@ -4,7 +4,7 @@ export default async function CodePage() {
     const res = await fetch(url, { cache: "no-store" });
     const data = await res.json();
 
-    data.date = new Date(data?.date).toLocaleString();
+    data.date = new Date(data?.date).toLocaleString("en-US");
 
     return data;
   }
