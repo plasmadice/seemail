@@ -1,10 +1,6 @@
 export default async function CodePage() {
   async function getCode() {
-    const url = `${
-      process.env.NODE_ENV.includes("dev")
-        ? process.env.BASE_URL
-        : process.env.NEXT_PUBLIC_SITE_URL
-    }/api/getEmailContents`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`;
     const res = await fetch(url, { cache: "no-store" });
     const data = await res.json();
     return data?.code;
