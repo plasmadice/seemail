@@ -12,8 +12,8 @@ export default async function CodePage() {
   const code = await getCode();
   return (
     <div>
-      <h4>{code.date}</h4>
-      <h1>{code.code}</h1>
+      <p className="text-2xl font-semibold">{code.code}</p>
+      <p className="text-sm italic">Sent: {code.date}</p>
     </div>
   );
 }
