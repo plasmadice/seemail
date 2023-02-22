@@ -28,8 +28,7 @@ export default function handler(
     let lock = await client.getMailboxLock('INBOX');
 
     try {
-      let list = await client.search({subject: process.env.DEFAULT_SEARCH});
-      let code = "error"
+        let list = await client.search({subject: process.env.DEFAULT_SEARCH});
 
         let lastMsg = list[list.length - 1]
         // console.log(lastMsg)
@@ -37,9 +36,10 @@ export default function handler(
         let msg = await client.fetchOne(lastMsg, {envelope: true, source: true})
         const indexOfBold = msg.source.toString().indexOf("bold;'")
         let rest = msg.source.toString().slice(indexOfBold + 7)
-        code = rest.split('</p>')[0]
+        const code = rest.split('</p>')[0]
+        const date = msg.envelope.date
         
-        res.status(200).json({ code })
+        res.status(200).json({ code, date })
     } finally {
         // Make sure lock is released, otherwise next `getMailboxLock()` never returns
         lock.release()

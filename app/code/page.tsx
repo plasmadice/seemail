@@ -3,13 +3,17 @@ export default async function CodePage() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`;
     const res = await fetch(url, { cache: "no-store" });
     const data = await res.json();
-    return data?.code;
+
+    data.date = new Date(data?.date).toLocaleString();
+
+    return data;
   }
 
   const code = await getCode();
   return (
     <div>
-      <h1>{code}</h1>
+      <h4>{code.date}</h4>
+      <h1>{code.code}</h1>
     </div>
   );
 }
