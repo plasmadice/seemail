@@ -1,5 +1,10 @@
 export default async function CodePage() {
   async function getCode() {
+    console.log(
+      `process.env.NODE_ENV.includes("dev"): ${process.env.NODE_ENV.includes(
+        "dev"
+      )}`
+    );
     const url = `${
       process.env.NODE_ENV.includes("dev")
         ? process.env.BASE_URL
