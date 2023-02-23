@@ -1,13 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-
 const { ImapFlow } = require('imapflow');
 
 const messages: any = [];
 
 export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<any>
+  req: any,
+  res: any
 ) {
   const client = new ImapFlow({
     host: process.env.HOST,

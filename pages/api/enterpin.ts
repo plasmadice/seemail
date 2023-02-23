@@ -4,8 +4,8 @@
 // https://github.com/ireade/netlify-puppeteer-screenshot-demo
 // https://github.com/whitep4nth3r/puppeteer-demo
 
+import Chromium from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core";
-import Chromium from "@sparticuz/chromium";
 
 const exePath =
   process.platform === "win32"
@@ -25,7 +25,7 @@ async function getOptions(isDev: boolean) {
   } else {
     options = {
       args: Chromium.args,
-      executablePath: await Chromium.executablePath(),
+      executablePath: await Chromium.executablePath,
       headless: Chromium.headless,
     };
   }

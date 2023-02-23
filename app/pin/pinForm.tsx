@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function PinForm() {
   const [text, setText] = useState("");
+  const [response, setResponse] = useState("");
 
   async function sendPin(e: any) {
     e.preventDefault();
@@ -16,6 +17,7 @@ export default function PinForm() {
     }`;
     const res = await fetch(url, { cache: "no-store" });
     const data = await res.json();
+    setResponse(data.body);
     return data;
   }
 
@@ -23,7 +25,7 @@ export default function PinForm() {
     setText(e.target.value);
   }
   return (
-    <form onSubmit={sendPin}>
+    <form onSubmit={sendPin} noValidate>
       <div className="flex items-center border-b border-rhino py-2">
         <input
           type="text"
@@ -33,20 +35,25 @@ export default function PinForm() {
           className="appearance-none bg-blue-haze border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline"
         />
 
-        <button
-          onClick={sendPin}
-          className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded"
-          type="button"
-        >
-          Submit
-        </button>
-        <button
-          onClick={() => setText("")}
-          className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded"
-          type="button"
-        >
-          Clear
-        </button>
+        <div>
+          <button
+            onClick={sendPin}
+            className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded"
+            type="button"
+          >
+            Submit
+          </button>
+          <button
+            onClick={() => setText("")}
+            className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded"
+            type="button"
+          >
+            Clear
+          </button>
+        </div>
+        {response.length > 0 && (
+          <span className="error text-red-500 text-xs italic">{response}</span>
+        )}
       </div>
     </form>
   );
