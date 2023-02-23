@@ -89,11 +89,6 @@ module.exports = async (req: any, res: any) => {
     await page.type('input.pin', pin);
     await page.click('button.btn-primary')
 
-    // take a screenshot
-    const file = await page.screenshot({
-      type: "png",
-    });
-
     // close the browser
     await browser.close();
 
