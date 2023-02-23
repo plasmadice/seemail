@@ -1,7 +1,7 @@
 {
   "functions": {
-    "pages/enterpin.js": {
-      "excludeFiles": "{node_modules/**/*,.next/**/*,.vercel/**/*}"
+    "pages/**/*": {
+      "excludeFiles": "public/**"
     }
   }
 }
