@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "pages/enterpin.ts": {
+      "excludeFiles": "{node_modules/**/*,.next/**/*,.vercel/**/*}"
+    }
+  }
+}
