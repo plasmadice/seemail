@@ -32,7 +32,7 @@ async function getOptions(isDev: boolean) {
   return options;
 }
 
-export default function handler(
+export default async function handler(
   req: any,
   res: any
 ) {
