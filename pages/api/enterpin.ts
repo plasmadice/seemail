@@ -4,7 +4,7 @@
 // https://github.com/ireade/netlify-puppeteer-screenshot-demo
 // https://github.com/whitep4nth3r/puppeteer-demo
 
-import { launch } from "puppeteer-core";
+import puppeteer from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -59,7 +59,7 @@ export default function handler(
       const options = await getOptions(isDev);
   
       // launch a new headless browser with dev / prod options
-      const browser = await launch(options);
+      const browser = await puppeteer.launch(options);
       const page = await browser.newPage();
   
       // set the viewport size
