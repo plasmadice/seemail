@@ -1,11 +1,5 @@
-// Shout outs to the following repositories:
-
-// https://github.com/vercel/og-image
-// https://github.com/ireade/netlify-puppeteer-screenshot-demo
-// https://github.com/whitep4nth3r/puppeteer-demo
-
-import Chromium from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
+const puppeteer = require("puppeteer-core");
+const Chromium = require("chrome-aws-lambda");
 
 const exePath =
   process.platform === "win32"
