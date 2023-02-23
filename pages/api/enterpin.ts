@@ -5,7 +5,7 @@
 // https://github.com/whitep4nth3r/puppeteer-demo
 
 import puppeteer from "puppeteer-core";
-import chrome from "chrome-aws-lambda";
+import Chromium from "chrome-aws-lambda";
 
 const exePath =
   process.platform === "win32"
@@ -24,9 +24,9 @@ async function getOptions(isDev: boolean) {
     };
   } else {
     options = {
-      args: chrome.args,
-      executablePath: await chrome.executablePath,
-      headless: chrome.headless,
+      args: Chromium.args,
+      executablePath: await Chromium.executablePath,
+      headless: Chromium.headless,
     };
   }
   return options;
@@ -46,6 +46,7 @@ export default async function handler(
     const pin: any = req?.query?.pin;
   
     try {
+
       // pin length sanity check
       if (pin.length < 6) {
         res.statusCode = 400;
@@ -93,6 +94,7 @@ export default async function handler(
       // return the file!
       res.status(200).json({body: "Success!"})
     } catch (e: any) {
+      console.log(e)
       res.status(500).json({
         body: "Sorry, Something went wrong!",
         error: e.message
