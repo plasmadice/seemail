@@ -1,7 +1,10 @@
 {
   "functions": {
+    "api/**/*": {
+      "excludeFiles": "{+(.now|.next|_next|node_modules|public|assets|components|pages)/**,yarn.lock,README.md}"
+    },
     "pages/**/*": {
-      "excludeFiles": "node_modules/chrome-aws-lambda/bin"
+      "excludeFiles": "{+(.now|.next|_next|node_modules|public|assets|components|pages)/**,yarn.lock,README.md}"
     }
   }
 }
