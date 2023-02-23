@@ -6,7 +6,11 @@ export default function PinForm() {
 
   async function sendPin(e: any) {
     e.preventDefault();
-    console.log(text);
+
+    // Strip extra characters
+    text.includes("-") ? setText(text.replaceAll("-", "")) : null;
+    text.includes(" ") ? setText(text.replaceAll(" ", "")) : null;
+
     const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${text}${
       process.env.NODE_ENV.includes("development") ? "&isDev=true" : ""
     }`;

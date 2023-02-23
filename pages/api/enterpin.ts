@@ -61,13 +61,6 @@ export default async function handler(
       const browser = await puppeteer.launch(options);
       const page = await browser.newPage();
   
-      // set the viewport size
-      await page.setViewport({
-        width: 1920,
-        height: 1080,
-        deviceScaleFactor: 1,
-      });
-  
       // tell the page to visit the url
       await page.goto(pageUrl);
   
