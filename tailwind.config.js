@@ -9,6 +9,8 @@ module.exports = {
         'faded-blue': '#7a86b6',
         'rhino': '#29435c',
         'blue-haze': '#c8b6e2',
+        'persian-red': '#cd3131',
+        'windows-blue': '#387adf'
       }
     },
   },
