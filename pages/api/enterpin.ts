@@ -6,7 +6,6 @@
 
 import puppeteer from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
-import type { NextApiRequest, NextApiResponse } from 'next'
 
 const exePath =
   process.platform === "win32"
@@ -34,8 +33,8 @@ async function getOptions(isDev: boolean) {
 }
 
 export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<any>
+  req: any,
+  res: any
 ) {
   
   const main = async () => {
