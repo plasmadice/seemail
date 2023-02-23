@@ -5,7 +5,7 @@
 // https://github.com/whitep4nth3r/puppeteer-demo
 
 import puppeteer from "puppeteer-core";
-import Chromium from "chrome-aws-lambda";
+import Chromium from "@sparticuz/chromium";
 
 const exePath =
   process.platform === "win32"
