@@ -25,7 +25,7 @@ async function getOptions(isDev: boolean) {
   } else {
     options = {
       args: Chromium.args,
-      executablePath: await Chromium.executablePath,
+      executablePath: Chromium.executablePath,
       headless: Chromium.headless,
     };
   }
