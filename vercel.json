@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/enterpin.js": {
+    "pages/enterpin.js": {
       "excludeFiles": "{node_modules/**/*,.next/**/*,.vercel/**/*}"
     }
   }
