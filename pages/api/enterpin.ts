@@ -9,7 +9,6 @@ const exePath =
     : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 async function getOptions(isDev: boolean) {
-  console.log("Options retrieved")
   let options;
   if (isDev) {
     options = {
