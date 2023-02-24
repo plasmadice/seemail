@@ -8,11 +8,8 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "engines": {
-    "node": ">=16.8.0 <18.0.0"
-  },
   "dependencies": {
-    "@sparticuz/chromium": "92.0.0",
+    "@sparticuz/chromium": "106.0.0",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
