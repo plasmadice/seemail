@@ -18,7 +18,7 @@ async function getOptions(isDev: boolean) {
     };
   } else {
     options = {
-      args: ['--no-sandbox'],
+      args: chrome.args,
       defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
       headless: chrome.headless,
