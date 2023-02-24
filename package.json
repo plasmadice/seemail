@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": ">-16.8.0 <17.0.0"
+    "node": ">=16.8.0 <18.0.0"
   },
   "dependencies": {
     "@sparticuz/chromium": "92.0.0",
