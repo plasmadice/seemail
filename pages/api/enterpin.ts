@@ -1,4 +1,4 @@
-import chrome from "@sparticuz/chromium";
+import chrome from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core"
 
 const exePath =
