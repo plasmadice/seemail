@@ -51,8 +51,8 @@ export default async function handler(
       const options = await getOptions(isDev);
   
       // launch a new headless browser with dev / prod options
-      const browser = await puppeteer.launch(options);
-      const page = await browser.newPage();
+      const browser: any = await puppeteer.launch(options);
+      const page: any = await browser.newPage();
   
       // tell the page to visit the url
       await page.goto(pageUrl);
