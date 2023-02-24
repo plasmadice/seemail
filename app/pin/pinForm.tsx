@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PinForm() {
   type apiResponse = {
@@ -16,7 +16,23 @@ export default function PinForm() {
   });
   const [waiting, setWaiting] = useState(false);
 
+  const Spinner = () => {
+    return (
+      <div className="flex items-center justify-center">
+        <div
+          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   async function sendPin(e: any) {
+    setWaiting(true);
     e.preventDefault();
 
     // Strip extra characters from input
@@ -37,9 +53,19 @@ export default function PinForm() {
     return data;
   }
 
+  function handleClearInput() {
+    setText("");
+  }
+
   function handleInputChange(e: any) {
     setText(e.target.value);
   }
+
+  useEffect(() => {
+    setWaiting(false);
+    handleClearInput();
+  }, [response]);
+
   return (
     <form onSubmit={sendPin} noValidate className="w-fit h-max min-h-fit">
       <p className="text-white font-mono text-base">(unfinished)PIN LOGIN</p>
@@ -51,7 +77,6 @@ export default function PinForm() {
           placeholder='"123456"'
           className="appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline w-full"
         />
-
         <div className="flex items-center space-x-8">
           <button
             onClick={sendPin}
@@ -61,7 +86,7 @@ export default function PinForm() {
             Submit
           </button>
           <button
-            onClick={() => setText("")}
+            onClick={handleClearInput}
             className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded"
             type="button"
           >
@@ -69,6 +94,7 @@ export default function PinForm() {
           </button>
         </div>
         <div className="h-fit flex flex-col space-y-1">
+          {waiting && <Spinner />}
           <span className="text-goldenrod text-sm italic">{response.body}</span>
           <span className="error font-bold text-red-900 text-xs italic">
             {response.error}
