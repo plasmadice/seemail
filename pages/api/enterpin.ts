@@ -1,5 +1,5 @@
-const puppeteer = require("puppeteer-core");
-const Chromium = require("chrome-aws-lambda");
+import Chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core"
 
 const exePath =
   process.platform === "win32"
@@ -43,10 +43,7 @@ export default async function handler(
 
       // pin length sanity check
       if (pin.length < 6) {
-        res.statusCode = 400;
-        res.json({
-          body: "Pin must be 6 or more characters",
-        });
+        res.status(400).json({body: "Pin must be 6 or more characters"})
       }
   
       // get options for browser
@@ -86,7 +83,7 @@ export default async function handler(
       await browser.close();
   
       // return the file!
-      res.status(200).json({body: "Success!"})
+      res.status(200).json({body: "Successful login"})
     } catch (e: any) {
       console.log(e)
       res.status(500).json({
