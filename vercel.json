@@ -1,7 +1,7 @@
 {
   "functions": {
     "pages/api/enterpin.ts": {
-      "runtime": "node@14.15.4"
+      "runtime": "node@12.22.12"
     }
   }
 }

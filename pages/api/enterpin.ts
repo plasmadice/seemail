@@ -105,7 +105,10 @@ export default async function handler(
           // res.end(file);
         } catch (e: any) {
           console.log("Failure AFTER browser creation")
-          console.log(e)
+          res.status(400).json({
+            body: "Failure AFTER browser creation",
+            error: e.message
+          })
         }
       }
     } catch (e: any) {
