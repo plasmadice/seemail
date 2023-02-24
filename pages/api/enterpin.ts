@@ -1,5 +1,6 @@
 import chrome from "chrome-aws-lambda";
 import puppeteer from "puppeteer-core"
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const exePath =
   process.platform === "win32"
@@ -18,7 +19,7 @@ async function getOptions(isDev: boolean) {
     };
   } else {
     options = {
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: chrome.args,
       defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
       headless: chrome.headless,
@@ -28,8 +29,8 @@ async function getOptions(isDev: boolean) {
 }
 
 export default async function handler(
-  req: any,
-  res: any
+  req: NextApiRequest,
+  res: NextApiResponse
 ) {
   
   const main = async () => {
@@ -39,52 +40,74 @@ export default async function handler(
   
     const isDev: boolean = req?.query?.isDev === "true";
     const pin: any = req?.query?.pin;
-  
-    try {
 
+    
+
+    try { /* to open the browser */
       // pin length sanity check
       if (pin.length < 6) {
         res.status(400).json({body: "Pin must be 6 or more characters"})
+      } else {
+        // get options for browser
+        const options = await getOptions(isDev);
+    
+        // launch a new headless browser with dev / prod options
+        const browser: puppeteer.Browser = await puppeteer.launch(options);
+
+        try { /* Navigate and login */
+          const page: puppeteer.Page = await browser.newPage();
+          
+          // set the viewport size
+          await page.setViewport({
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1,
+          });
+      
+          // tell the page to visit the url
+          await page.goto(pageUrl);
+      
+          // Login
+          await page.type(".form-control[name='email']", email);
+          await page.type(".form-control[name='password']", passWord);
+          await page.click('.btn-login');
+          await page.waitForTimeout(2000);
+      
+          await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
+          await page.waitForTimeout(2000);
+      
+          // Waits for bank checkmark after login and handles it
+          const reminderBox = await page.$('.conform-checkbox');
+          reminderBox ?  await page.click('.conform-checkbox') : null;
+          const reminderButton = await page.$('.btn-success:not(.w-full)')
+          reminderButton ?  await page.click('.btn-success:not(.w-full)') : null;
+      
+          // Navigate to pin login
+          await page.goto(`${process.env.SITE_URL}/account/pin`)
+          await page.waitForTimeout(500);
+      
+          // Enter pin
+          await page.type('input.pin', pin);
+          await page.click('button.btn-primary')
+
+          // development
+          
+          // take a screenshot
+          const file = await page.screenshot({
+            type: "png",
+          });
+      
+          // close the browser
+          await browser.close();
+      
+          res.status(200).json({body: "Successful login"})
+          // return the file!
+          // res.end(file);
+        } catch (e: any) {
+          console.log("Failure AFTER browser creation")
+          console.log(e)
+        }
       }
-  
-      // get options for browser
-      const options = await getOptions(isDev);
-  
-      // launch a new headless browser with dev / prod options
-      const browser: any = await puppeteer.launch(options);
-      const page: any = await browser.newPage();
-  
-      // tell the page to visit the url
-      await page.goto(pageUrl);
-  
-      // Login
-      await page.type(".form-control[name='email']", email);
-      await page.type(".form-control[name='password']", passWord);
-      await page.click('.btn-login');
-      await page.waitForNetworkIdle({idleTime: 2000});
-  
-      await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
-      await page.waitForNetworkIdle({idleTime: 2000});
-  
-      // Waits for bank checkmark after login and handles it
-      const reminderBox = await page.$('.conform-checkbox');
-      reminderBox ?  await page.click('.conform-checkbox') : null;
-      const reminderButton = await page.$('.btn-success:not(.w-full)')
-      reminderButton ?  await page.click('.btn-success:not(.w-full)') : null;
-  
-      // Navigate to pin login
-      await page.goto(`${process.env.SITE_URL}/account/pin`)
-      await page.waitForNetworkIdle({idleTime: 1000});
-  
-      // Enter pin
-      await page.type('input.pin', pin);
-      await page.click('button.btn-primary')
-  
-      // close the browser
-      await browser.close();
-  
-      // return the file!
-      res.status(200).json({body: "Successful login"})
     } catch (e: any) {
       console.log(e)
       res.status(400).json({

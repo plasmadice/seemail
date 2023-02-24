@@ -1,5 +1,15 @@
 import "./globals.css";
 
+export const metadata = {
+  generator: "Next.js",
+  applicationName: "seemail",
+  keywords: ["seemail", "nextjs", "puppeteer"],
+  authors: [{ name: "Josh", url: "https://hwhite.dev/" }],
+  themeColor: "slate",
+  colorScheme: "dark",
+  title: "Seemail",
+};
+
 export default function RootLayout({
   children,
 }: {
