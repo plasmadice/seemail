@@ -18,7 +18,7 @@ async function getOptions(isDev: boolean) {
     };
   } else {
     options = {
-      args: chrome.args,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
       defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
       headless: chrome.headless,
