@@ -19,6 +19,7 @@ async function getOptions(isDev: boolean) {
   } else {
     options = {
       args: chrome.args,
+      defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
       headless: chrome.headless,
     };
