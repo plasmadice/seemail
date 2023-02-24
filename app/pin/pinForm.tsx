@@ -41,17 +41,18 @@ export default function PinForm() {
     setText(e.target.value);
   }
   return (
-    <form onSubmit={sendPin} noValidate>
-      <div className="flex items-center border-b border-rhino py-2">
+    <form onSubmit={sendPin} noValidate className="w-fit h-max min-h-fit">
+      <p className="text-white font-mono text-base">(unfinished)PIN LOGIN</p>
+      <div className="flex flex-col items-center border-b border-rhino space-y-4">
         <input
           type="text"
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
-          className="appearance-none bg-blue-haze border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline"
+          className="appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline w-full"
         />
 
-        <div>
+        <div className="flex items-center space-x-8">
           <button
             onClick={sendPin}
             className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded"
@@ -67,14 +68,12 @@ export default function PinForm() {
             Clear
           </button>
         </div>
-        {response.body.length && (
-          <span className="text-red-300 text-xs italic">{response.body}</span>
-        )}
-        {response.error && response.error.length && (
-          <span className="error text-red-900 text-xs italic">
+        <div className="h-fit flex flex-col space-y-1">
+          <span className="text-goldenrod text-sm italic">{response.body}</span>
+          <span className="error font-bold text-red-900 text-xs italic">
             {response.error}
           </span>
-        )}
+        </div>
       </div>
     </form>
   );

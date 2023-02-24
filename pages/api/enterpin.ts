@@ -46,7 +46,7 @@ export default async function handler(
     try { /* to open the browser */
       // pin length sanity check
       if (pin.length < 6) {
-        res.status(400).json({body: "Pin must be 6 or more characters"})
+        res.status(400).json({body: "Pin must be 6 or more numbers ('-' and spaces will be removed)"})
       } else {
         // get options for browser
         const options = await getOptions(isDev);

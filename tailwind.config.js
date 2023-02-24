@@ -10,7 +10,8 @@ module.exports = {
         'rhino': '#29435c',
         'blue-haze': '#c8b6e2',
         'persian-red': '#cd3131',
-        'windows-blue': '#387adf'
+        'windows-blue': '#387adf',
+        'goldenrod': '#e6db74'
       }
     },
   },

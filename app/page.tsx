@@ -4,14 +4,13 @@ import PinForm from "./pin/pinForm";
 
 export default function Home() {
   return (
-    <div className="max-w-md max-h-max m-auto grid grid-cols-12 bg-inherit ">
-      <div className="col-span-12 rounded-t bg-rhino p-32">
-        <Link className="text-white font-mono text-base" href="/code">
-          Retrieve newest code from email
+    <div className="h-max m-auto bg-inherit max-w-md flex flex-col min-h-fit">
+      <div className="rounded-t bg-rhino p-12 text-center">
+        <Link className=" text-white font-mono text-base" href="/code">
+          {">"}Retrieve newest code from email{"<"}
         </Link>
       </div>
-      <div className="col-span-12 rounded-b bg-faded-blue p-32 flex-auto max-h-max max-w-max">
-        <p className="text-white font-mono text-base">(unfinished)PIN LOGIN</p>
+      <div className="rounded-b bg-faded-blue max-w-md p-12 items-center flex flex-col h-max text-center">
         <PinForm />
         <a
           className="text-white font-mono text-base"
