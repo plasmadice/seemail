@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "13.1.6",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
@@ -17,7 +16,7 @@
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "imapflow": "^1.0.120",
-    "next": "13.1.6",
+    "next": "^13.2.0",
     "puppeteer-core": "^19.7.2",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
