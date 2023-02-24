@@ -87,7 +87,7 @@ export default async function handler(
       res.status(200).json({body: "Successful login"})
     } catch (e: any) {
       console.log(e)
-      res.status(500).json({
+      res.status(400).json({
         body: "Sorry, Something went wrong!",
         error: e.message
       })
