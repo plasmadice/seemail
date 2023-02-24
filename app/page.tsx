@@ -16,6 +16,7 @@ export default function Home() {
         <a
           className="text-white font-mono text-base"
           target="_blank"
+          rel="noreferrer"
           href="https://github.com/plasmadice/seemail"
         >
           Link to github repo
