@@ -1,4 +1,4 @@
-import Chromium from "chrome-aws-lambda";
+import chrome from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core"
 
 const exePath =
@@ -9,6 +9,7 @@ const exePath =
     : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 async function getOptions(isDev: boolean) {
+  console.log("Options retrieved")
   let options;
   if (isDev) {
     options = {
@@ -18,9 +19,9 @@ async function getOptions(isDev: boolean) {
     };
   } else {
     options = {
-      args: Chromium.args,
-      executablePath: await Chromium.executablePath,
-      headless: Chromium.headless,
+      args: chrome.args,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless,
     };
   }
   return options;
