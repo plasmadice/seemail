@@ -54,8 +54,9 @@ export default async function handler (
       const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`;
       const res = await fetch(url, { cache: "no-store" });
       const data = await res.json();
-  
-      return data.code;
+      const code = data.code;
+      console.log(`Code: ${code}`)
+      return code;
     }
 
     try { /* to open the browser */
