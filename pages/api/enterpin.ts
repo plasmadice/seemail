@@ -50,6 +50,14 @@ export default async function handler (
       res.send(html)
     }
 
+    const getCode = async () => {
+      const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`;
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+  
+      return data.code;
+    }
+
     try { /* to open the browser */
 
       // pin length sanity check
@@ -86,13 +94,18 @@ export default async function handler (
 
           // failing at this point, likely due to code being required from email
           if (pin === "543210") {
-            await returnHTML(page)
+            // await returnHTML(page)
           }
 
-          await Promise.all([
-            page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
-            page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
-          ])
+          // Check for activation code requirement input.form-control[placeholder="Activation code"]
+           // Waits for activation code page after login
+           const activationCodeBox = await page.$('input.form-control[placeholder="Activation code"]');
+           const foundActivationPage = activationCodeBox ?  await page.type('input.form-control[placeholder="Activation code"]', await getCode()) : null;
+           const activationPagebutton = await page.$('input.btn-primary[type="submit"]');
+           activationPagebutton ?  await page.click('input.btn-primary[type="submit"]') : null;
+
+          await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
+          await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
           
           await page.waitForNetworkIdle({idleTime: 2000});
       
