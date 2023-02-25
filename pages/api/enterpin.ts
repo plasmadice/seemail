@@ -66,8 +66,10 @@ export default async function handler (
           await page.type(".form-control[name='password']", passWord);
           await page.click('.btn-login');
       
-          await page.waitForFunction("document.querySelector('#site-preloader') && document.querySelector('#site-preloader').style.display === 'none'");
+          await page.waitForFunction("document.querySelector('#site-preloader') && document.querySelector('#site-preloader').style.display === 'none'", {timeout: 2000});
           
+          await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
+
           await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
           await page.waitForNetworkIdle({idleTime: 2000});
       
