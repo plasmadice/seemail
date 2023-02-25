@@ -67,9 +67,11 @@ export default function PinForm() {
   }, [response]);
 
   return (
-    <form onSubmit={sendPin} noValidate className="w-fit h-max min-h-fit">
-      <p className="text-white font-mono text-base">(unfinished)PIN LOGIN</p>
-      <div className="flex flex-col items-center border-b border-rhino space-y-4">
+    <form onSubmit={sendPin} noValidate className="w-11/12 h-max min-h-fit">
+      <p className="text-white font-mono text-base pb-4">
+        (unfinished)PIN LOGIN
+      </p>
+      <div className="flex flex-col items-center space-y-4">
         <input
           type="text"
           value={text}
@@ -86,6 +88,7 @@ export default function PinForm() {
             Submit
           </button>
           <button
+            disabled={waiting}
             onClick={handleClearInput}
             className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded"
             type="button"
@@ -93,7 +96,7 @@ export default function PinForm() {
             Clear
           </button>
         </div>
-        <div className="h-fit flex flex-col space-y-1">
+        <div className="h-full flex flex-col space-y-1">
           {waiting && <Spinner />}
           <span className="text-goldenrod text-sm italic">{response.body}</span>
           <span className="error font-bold text-red-900 text-xs italic">
