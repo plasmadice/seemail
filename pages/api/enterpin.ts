@@ -26,9 +26,6 @@ export default async function handler (
     console.log(`Env: ${process.env.NODE_ENV} | url: ${pageUrl}`)
 
     const screenshot = async (page: any) => {
-      
-      const html = await page.content();
-      console.log(html);
 
       console.log("Taking screenshot for debugging. Expect header errors.");
       res.statusCode = 200;
@@ -105,6 +102,7 @@ export default async function handler (
            const activationPagebutton = foundActivationPage ? await page.$('input.btn-primary[type="submit"]') : null;
            activationPagebutton ?  await page.click('input.btn-primary[type="submit"]') : null;
 
+          await screenshot(page);
           await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
           await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
           
