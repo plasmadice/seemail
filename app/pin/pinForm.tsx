@@ -46,6 +46,7 @@ export default function PinForm() {
     const body = data.body;
     const status = res.status;
     const error = data?.error;
+    console.log(response);
     setResponse({ body, status, error });
     return data;
   }
