@@ -26,15 +26,16 @@ export default async function handler (
     console.log(`Env: ${process.env.NODE_ENV} | url: ${pageUrl}`)
 
     const screenshot = async (page: any) => {
+      
+      const html = await page.content();
+      console.log(html);
+
       console.log("Taking screenshot for debugging. Expect header errors.");
       res.statusCode = 200;
       res.setHeader("Content-Type", `image/png`);
       const file = await page.screenshot({
         type: "png",
       });
-      
-      let bodyHTML = await page.evaluate(() => document.body.innerHTML);
-      console.log(bodyHTML);
 
       res.send(file)
     }
