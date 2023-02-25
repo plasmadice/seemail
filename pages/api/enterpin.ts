@@ -40,6 +40,16 @@ export default async function handler (
       res.send(file)
     }
 
+    const returnHTML = async (page: any) => {
+      
+      const html = await page.content();
+      console.log(html);
+
+      console.log("Returning HTML for debugging. Expect header errors.");
+      res.statusCode = 200;
+      res.send(html)
+    }
+
     try { /* to open the browser */
 
       // pin length sanity check
@@ -76,7 +86,7 @@ export default async function handler (
 
           // failing at this point, likely due to code being required from email
           if (pin === "543210") {
-            await screenshot(page)
+            await returnHTML(page)
           }
 
           await Promise.all([
