@@ -59,14 +59,15 @@ export default async function handler (
 
         try { /* to navigate and login */
         
-          await page.goto(pageUrl);
+          await page.goto(pageUrl, { waitUntil: "networkidle0" });
     
           // Login
           await page.type(".form-control[name='email']", email);
           await page.type(".form-control[name='password']", passWord);
           await page.click('.btn-login');
-          await page.waitForNetworkIdle({idleTime: 2000});
       
+          await page.waitForFunction("document.querySelector('#site-preloader') && document.querySelector('#site-preloader').style.display === 'none'");
+          
           await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
           await page.waitForNetworkIdle({idleTime: 2000});
       
