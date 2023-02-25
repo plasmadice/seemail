@@ -16,15 +16,14 @@ export default async function handler (
 ) {
   
   const main = async () => {
+
     const pageUrl: any = process.env.SITE_URL;
     const email: any = process.env.SITE_EMAIL;
     const passWord: any = process.env.SITE_PASSWORD;
   
     const pin: any = req?.query?.pin;
-
-    const debugLog = (m: any) => {
-        console.log(m)
-    }
+    
+    console.log(`Env: ${process.env.NODE_ENV} | url: ${pageUrl}`)
 
     // const screenshot = async (page: puppeteer.Page) => {
     //   res.statusCode = 200;
@@ -39,7 +38,7 @@ export default async function handler (
 
       // pin length sanity check
       if (!pin || pin.length < 6 || pin.length > 10 || Number.isNaN(Math.abs(pin))) {
-        debugLog("Pin failed validation");
+        console.log("Pin failed validation");
 
         res.status(400).json({body: "Hint: Pin must be 6-10 numbers long ('-' and spaces will be ignored)"})
 
@@ -94,11 +93,11 @@ export default async function handler (
             body: "Failure AFTER browser creation",
             error: e.message
           })
-          debugLog("Failure AFTER browser creation")
+          console.log("Failure AFTER browser creation")
         }
       }
     } catch (e: any) {
-      debugLog(e)
+      console.log(e)
       res.status(400).json({
         body: "Sorry, Something went wrong!",
         error: e.message
