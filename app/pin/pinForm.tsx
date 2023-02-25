@@ -77,7 +77,7 @@ export default function PinForm() {
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
-          className="appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline w-full"
+          className="appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline w-[90%]"
         />
         <div className="flex items-center space-x-8">
           <button
