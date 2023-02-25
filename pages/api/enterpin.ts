@@ -32,6 +32,10 @@ export default async function handler (
       const file = await page.screenshot({
         type: "png",
       });
+      
+      let bodyHTML = await page.evaluate(() => document.body.innerHTML);
+      console.log(bodyHTML);
+
       res.send(file)
     }
 
@@ -73,6 +77,7 @@ export default async function handler (
           if (pin === "543210") {
             await screenshot(page)
           }
+
           await Promise.all([
             page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
             page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
