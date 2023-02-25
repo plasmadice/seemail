@@ -66,12 +66,13 @@ export default async function handler (
           await page.type(".form-control[name='password']", passWord);
           await page.click('.btn-login');
       
-          await page.waitForFunction("document.querySelector('#site-preloader') && document.querySelector('#site-preloader').style.display === 'none'", {timeout: 2000});
+          // await page.waitForFunction("document.querySelector('#site-preloader') && document.querySelector('#site-preloader').style.display === 'none'");
+          await page.waitForNetworkIdle({idleTime: 5000});
           
           await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
-
+          
           await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
-          await page.waitForNetworkIdle({idleTime: 2000});
+          await page.waitForNetworkIdle({idleTime: 5000});
       
           // Waits for bank checkmark after login and handles it
           const reminderBox = await page.$('.conform-checkbox');
@@ -81,7 +82,7 @@ export default async function handler (
       
           // Navigate to pin login
           await page.goto(`${process.env.SITE_URL}/account/pin`)
-          await page.waitForNetworkIdle({idleTime: 1000});
+          await page.waitForNetworkIdle({idleTime: 2000});
       
           // Enter pin
           await page.type('input.pin', pin);
