@@ -1,6 +1,6 @@
 {
   "functions": {
-    "pages/api/enterpin.ts": {
+    "pages/**/*.ts": {
       "runtime": "nodejs@16.14.0"
     }
   }
