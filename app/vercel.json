@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "pages/api/**/*": {
-      "runtime": "node@12.x"
-    }
-  }
-}

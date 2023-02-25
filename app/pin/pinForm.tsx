@@ -36,13 +36,10 @@ export default function PinForm() {
     e.preventDefault();
 
     // Strip extra characters from input
-    text.includes("-") ? setText(text.replaceAll("-", "")) : null;
-    text.includes(" ") ? setText(text.replaceAll(" ", "")) : null;
+    const sanitizedText = text.replaceAll("-", "").replaceAll(" ", "");
 
     // Pull url based on environment
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${text}${
-      process.env.NODE_ENV.includes("development") ? "&isDev=true" : ""
-    }`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${sanitizedText}`;
 
     const res = await fetch(url, { cache: "no-store" });
     const data: apiResponse = await res.json();
@@ -96,7 +93,7 @@ export default function PinForm() {
             Clear
           </button>
         </div>
-        <div className="h-full flex flex-col space-y-1">
+        <div className="h-full flex flex-col space-y-1 max-w-xs">
           {waiting && <Spinner />}
           <span className="text-goldenrod text-sm italic">{response.body}</span>
           <span className="error font-bold text-red-900 text-xs italic">
