@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-const chromium = require("@sparticuz/chromium-min");
-const puppeteer = require("puppeteer-core");
+import chromium from "@sparticuz/chromium-min"
+import puppeteer from "puppeteer-core"
 
 const exePath =
   process.platform === "win32"
@@ -57,12 +57,6 @@ export default async function handler (
         
         const page = await browser.newPage();
 
-        await page.setViewport({
-          width: 1920,
-          height: 1080,
-          deviceScaleFactor: 1,
-        });
-
         try { /* to navigate and login */
         
           await page.goto(pageUrl, { waitUntil: "networkidle0" });
@@ -71,12 +65,13 @@ export default async function handler (
           await page.type(".form-control[name='email']", email);
           await page.type(".form-control[name='password']", passWord);
           await page.click('.btn-login');
-      
+
           await page.waitForNetworkIdle({idleTime: 2000});
+          await Promise.all([
+            page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
+            page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
+          ])
           
-          await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
-          
-          await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]');
           await page.waitForNetworkIdle({idleTime: 2000});
       
           // Waits for bank checkmark after login and handles it
