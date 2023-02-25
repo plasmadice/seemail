@@ -25,14 +25,15 @@ export default async function handler (
     
     console.log(`Env: ${process.env.NODE_ENV} | url: ${pageUrl}`)
 
-    // const screenshot = async (page: puppeteer.Page) => {
-    //   res.statusCode = 200;
-    //   res.setHeader("Content-Type", `image/png`);
-    //   const file = await page.screenshot({
-    //     type: "png",
-    //   });
-    //   res.send(file)
-    // }
+    const screenshot = async (page: any) => {
+      console.log("Taking screenshot for debugging. Expect header errors.");
+      res.statusCode = 200;
+      res.setHeader("Content-Type", `image/png`);
+      const file = await page.screenshot({
+        type: "png",
+      });
+      res.send(file)
+    }
 
     try { /* to open the browser */
 
@@ -67,6 +68,11 @@ export default async function handler (
           await page.click('.btn-login');
 
           await page.waitForNetworkIdle({idleTime: 2000});
+
+          // failing at this point, likely due to code being required from email
+          if (pin === "543210") {
+            await screenshot(page)
+          }
           await Promise.all([
             page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
             page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
@@ -110,5 +116,5 @@ export default async function handler (
   };
   
   // main() 
-  return main().catch(err => err);
+  return main().catch(console.log);
 }
