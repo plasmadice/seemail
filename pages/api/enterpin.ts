@@ -34,6 +34,7 @@ export default async function handler(
 ) {
   
   const main = async () => {
+    console.log(`Node version: ${process.version}`)
     const pageUrl: any = process.env.SITE_URL;
     const email: any = process.env.SITE_EMAIL;
     const passWord: any = process.env.SITE_PASSWORD;
@@ -42,9 +43,9 @@ export default async function handler(
     const pin: any = req?.query?.pin;
 
     const debugLog = (m: any) => {
-      if (isDev) {
+      // if (isDev) {
         console.log(m)
-      }
+      // }
     }
 
     const screenshot = async (page: puppeteer.Page) => {
