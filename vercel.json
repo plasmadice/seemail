@@ -1,8 +1,0 @@
-{
-  "functions": {
-    "pages/**/*.ts": {
-      "runtime": "node@12.0.0",
-      "maxDuration": 5
-    }
-  }
-}

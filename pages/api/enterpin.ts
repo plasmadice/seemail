@@ -59,7 +59,7 @@ export default async function handler(
 
     try { /* to open the browser */
       // pin length sanity check
-      if (pin.length < 6) {
+      if (!pin || pin.length < 6) {
         debugLog("Pin length too short");
         res.status(400).json({body: "Pin must be 6 or more numbers ('-' and spaces will be removed)"})
       } else {
