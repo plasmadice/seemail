@@ -11,7 +11,8 @@ module.exports = {
         'blue-haze': '#c8b6e2',
         'persian-red': '#cd3131',
         'windows-blue': '#387adf',
-        'goldenrod': '#e6db74'
+        'goldenrod': '#e6db74',
+        'bright-neon-pink': '#f637ec'
       }
     },
   },

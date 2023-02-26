@@ -113,7 +113,9 @@ export default function PinForm() {
         </div>
         <div className="h-full flex flex-col space-y-1 max-w-xs">
           {waiting && <Spinner />}
-          <span className="text-goldenrod text-sm italic">{response.body}</span>
+          <span className="text-rose-700 text-sm italic">
+            {waiting ? "Usually takes 30-50 seconds" : response.body}
+          </span>
           <span className="error font-bold text-red-900 text-xs italic">
             {response.error}
           </span>
