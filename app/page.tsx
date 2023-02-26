@@ -4,7 +4,7 @@ import PinForm from "./pin/pinForm";
 
 export default function Home() {
   return (
-    <div className="h-max m-auto bg-inherit max-w-md flex flex-col min-h-fit">
+    <div className="max-h-screen m-auto bg-inherit max-w-md flex flex-col">
       <div className="rounded-t bg-rhino min-w-md text-center flex flex-col space-y-4 h-80 w-96 place-content-center">
         <Link className=" text-white font-mono text-base" href="/code">
           {">"}Retrieve newest code from email{"<"}
