@@ -17,8 +17,16 @@ export default function PinForm() {
   const [waiting, setWaiting] = useState(false);
 
   const Spinner = () => {
+    const [timeLeft, setTimeLeft] = useState(60);
+
+    useEffect(() => {
+      setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+    });
+
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center flex-col">
         <div
           className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning"
           role="status"
@@ -27,6 +35,8 @@ export default function PinForm() {
             Loading...
           </span>
         </div>
+
+        <p className="text-goldenrod">{timeLeft}</p>
       </div>
     );
   };
@@ -52,6 +62,7 @@ export default function PinForm() {
 
   function handleClearInput() {
     setText("");
+    setWaiting(false);
   }
 
   function handleInputChange(e: any) {
@@ -59,7 +70,6 @@ export default function PinForm() {
   }
 
   useEffect(() => {
-    setWaiting(false);
     handleClearInput();
   }, [response]);
 
