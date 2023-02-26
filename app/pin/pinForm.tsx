@@ -43,7 +43,8 @@ export default function PinForm() {
     console.log(`sanitizedText: ${sanitizedText}`);
 
     const res = await fetch(url, { cache: "no-store" });
-    console.log(res);
+    console.log(res.body);
+    console.log(Object.keys(res));
     const data: apiResponse = await res.json();
     const body = data.body;
     const status = res.status;
