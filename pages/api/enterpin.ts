@@ -22,8 +22,6 @@ export default async function handler (
     const passWord: any = process.env.SITE_PASSWORD;
   
     const pin: any = req?.query?.pin;
-    
-    console.log(`Env: ${process.env.NODE_ENV} | url: ${pageUrl}`)
 
     const screenshot = async (page: any) => {
 
@@ -52,7 +50,6 @@ export default async function handler (
       const res = await fetch(url, { cache: "no-store" });
       const data = await res.json();
       const code = data.code;
-      console.log(`Code: ${code}`)
       return code;
     }
 
@@ -133,11 +130,9 @@ export default async function handler (
             body: "Failure AFTER browser creation",
             error: e.message
           })
-          console.log("Failure AFTER browser creation")
         }
       }
     } catch (e: any) {
-      console.log(e)
       res.status(400).json({
         body: "Sorry, Something went wrong!",
         error: e.message
