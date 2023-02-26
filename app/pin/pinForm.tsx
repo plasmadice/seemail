@@ -17,26 +17,36 @@ export default function PinForm() {
   const [waiting, setWaiting] = useState(false);
 
   const Spinner = () => {
-    const [timeLeft, setTimeLeft] = useState(60);
+    let timer: any;
+    const [count, setCount] = useState(60);
+
+    const updateCount = () => {
+      timer =
+        !timer &&
+        setInterval(() => {
+          setCount((prevCount) => prevCount - 1);
+        }, 1000);
+      if (count <= 0) clearInterval(timer);
+    };
 
     useEffect(() => {
-      setInterval(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-    });
+      updateCount();
+    }, []);
+
+    useEffect(() => {
+      return () => (count <= 0 ? clearInterval(timer) : undefined);
+    }, [count]);
 
     return (
-      <div className="flex items-center justify-center flex-col">
+      <div className="flex justify-center items-center">
         <div
-          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning"
+          className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning relative z-0"
           role="status"
-        >
-          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-            Loading...
-          </span>
-        </div>
+        />
 
-        <p className="text-goldenrod">{timeLeft}</p>
+        <p className="text-goldenrod h-8 w-8 absolute flex justify-center items-center">
+          {count > 0 ? count : 0}
+        </p>
       </div>
     );
   };
@@ -57,10 +67,12 @@ export default function PinForm() {
     const status = res.status;
     const error = data?.error;
     setResponse({ body, status, error });
+    handleClearInput();
     return data;
   }
 
   function handleClearInput() {
+    console.log("Input cleared");
     setText("");
     setWaiting(false);
   }
@@ -68,10 +80,6 @@ export default function PinForm() {
   function handleInputChange(e: any) {
     setText(e.target.value);
   }
-
-  useEffect(() => {
-    handleClearInput();
-  }, [response]);
 
   return (
     <form onSubmit={sendPin} noValidate className="w-11/12 h-max min-h-fit">
