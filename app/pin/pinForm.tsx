@@ -86,7 +86,7 @@ export default function PinForm() {
       <p className="text-white font-mono text-base pb-4">PIN LOGIN</p>
       <div className="flex flex-col items-center space-y-4">
         <input
-          type="text"
+          type="number"
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
