@@ -40,11 +40,8 @@ export default function PinForm() {
 
     // Pull url based on environment
     const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${sanitizedText}`;
-    console.log(`sanitizedText: ${sanitizedText}`);
 
     const res = await fetch(url, { cache: "no-store" });
-    console.log(await Promise.resolve(res));
-    console.log(Object.keys(res));
     const data: apiResponse = await res.json();
     const body = data.body;
     const status = res.status;

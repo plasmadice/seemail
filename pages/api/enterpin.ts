@@ -96,13 +96,15 @@ export default async function handler (
           }
 
           // Check for activation code requirement input.form-control[placeholder="Activation code"]
-           // Waits for activation code page after login
-           const activationCodeBox = await page.$('input.form-control[placeholder="Activation code"]');
-           const foundActivationPage = activationCodeBox ?  await page.type('input.form-control[placeholder="Activation code"]', await getCode()) : null;
-           const activationPagebutton = foundActivationPage ? await page.$('input.btn-primary[type="submit"]') : null;
-           activationPagebutton ?  await page.click('input.btn-primary[type="submit"]') : null;
+          // Waits for activation code page after login
+          const activationCodeBox = await page.$('input.form-control[placeholder="Activation code"]');
 
-          await screenshot(page);
+          if (activationCodeBox) {
+            await page.type('input.form-control[placeholder="Activation code"]', await getCode());
+            await page.keyboard.press('Enter');
+            await page.waitForNetworkIdle({idleTime: 2000});
+          }
+          
           await page.waitForSelector('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]'),
           await page.click('.ng-scope > .profile:not(.disabled)  > .avatar > img[src="/assets/img/user_header_avatar.png"]')
           
