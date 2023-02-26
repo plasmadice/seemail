@@ -87,13 +87,7 @@ export default async function handler (
 
           await page.waitForNetworkIdle({idleTime: 2000});
 
-          // failing at this point, likely due to code being required from email
-          if (pin === "543210") {
-            // await returnHTML(page)
-          }
-
-          // Check for activation code requirement input.form-control[placeholder="Activation code"]
-          // Waits for activation code page after login
+          // Waits for activation code page after login (common in cloud environment)
           const activationCodeBox = await page.$('input.form-control[placeholder="Activation code"]');
 
           if (activationCodeBox) {
