@@ -83,9 +83,7 @@ export default function PinForm() {
 
   return (
     <form onSubmit={sendPin} noValidate className="w-11/12 h-max min-h-fit">
-      <p className="text-white font-mono text-base pb-4">
-        (unfinished)PIN LOGIN
-      </p>
+      <p className="text-white font-mono text-base pb-4">PIN LOGIN</p>
       <div className="flex flex-col items-center space-y-4">
         <input
           type="text"
