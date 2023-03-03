@@ -17,7 +17,6 @@ export default function PinForm() {
   const [waiting, setWaiting] = useState(false);
 
   const Spinner = () => {
-    let timer: any;
     const [count, setCount] = useState(60);
 
     useEffect(() => {
@@ -46,25 +45,20 @@ export default function PinForm() {
     setWaiting(true);
     e.preventDefault();
 
-    // Strip extra characters from input
-    const sanitizedText = text.replaceAll("-", "").replaceAll(" ", "");
-
     // Pull url based on environment
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${sanitizedText}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${text}`;
 
     const res = await fetch(url, { cache: "no-store" });
+    const status = res.status;
     const data: apiResponse = await res.json();
     const body = data.body;
-    const status = res.status;
     const error = data?.error;
     setResponse({ body, status, error });
-    handleClearInput();
-    return data;
+    await handleClearInput();
   }
 
-  function handleClearInput() {
-    console.log("Input cleared");
-    setText("");
+  async function handleClearInput() {
+    setText((prev) => (response.status ? "" : prev));
     setWaiting(false);
   }
 
@@ -77,7 +71,7 @@ export default function PinForm() {
       <p className="text-white font-mono text-base pb-4">PIN LOGIN</p>
       <div className="flex flex-col items-center space-y-4">
         <input
-          type="number"
+          type="text"
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
@@ -102,7 +96,7 @@ export default function PinForm() {
         </div>
         <div className="h-full flex flex-col space-y-1 max-w-xs">
           {waiting && <Spinner />}
-          <span className="text-rose-700 text-sm italic">
+          <span className="text-goldenrod text-lg font-medium italic">
             {waiting ? "Usually takes 30-50 seconds" : response.body}
           </span>
           <span className="error font-bold text-red-900 text-xs italic">
