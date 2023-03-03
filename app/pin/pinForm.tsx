@@ -20,22 +20,13 @@ export default function PinForm() {
     let timer: any;
     const [count, setCount] = useState(60);
 
-    const updateCount = () => {
-      timer =
-        !timer &&
-        setInterval(() => {
-          setCount((prevCount) => prevCount - 1);
-        }, 1000);
-      if (count <= 0) clearInterval(timer);
-    };
-
     useEffect(() => {
-      updateCount();
+      const countId = setInterval(() => {
+        setCount((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(countId);
     }, []);
-
-    useEffect(() => {
-      return () => (count <= 0 ? clearInterval(timer) : undefined);
-    }, [count]);
 
     return (
       <div className="flex justify-center items-center">
