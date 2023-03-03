@@ -70,21 +70,21 @@ export default function PinForm() {
     <form
       onSubmit={sendPin}
       noValidate
-      className="w-[90%] h-full grid grid-cols-1 place-content-stretch"
+      className="w-[90%] h-full grid grid-cols-1"
     >
-      <div className="h-[70%] space-y-4 grid grid-cols-1 place-content-stretch">
+      <div className="h-[70%][ space-y-4] grid grid-cols-1">
         <p className="text-white font-mono text-base pt-4">PIN LOGIN</p>
         <input
           type="text"
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
-          className="w-full appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline"
+          className="w-full max-h-10 appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline"
         />
-        <div className="w-full grid grid-cols-2 place-content-center space-x-8">
+        <div className="w-full grid grid-cols-2 place-content-between px-4 gap-10">
           <button
             onClick={sendPin}
-            className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded"
+            className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded row-span-1"
             type="button"
           >
             Submit
@@ -92,7 +92,7 @@ export default function PinForm() {
           <button
             disabled={waiting}
             onClick={handleClearInput}
-            className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded"
+            className="flex-shrink-0 bg-persian-red hover:bg-firefly text-sm text-white py-1 px-2 rounded row-span-1"
             type="button"
           >
             Clear
