@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import chromium from "@sparticuz/chromium-min"
 import puppeteer from "puppeteer-core"
-import { fail } from 'assert'
 
 const exePath =
   process.platform === "win32"
@@ -69,7 +68,7 @@ export default async function handler (
           args: process.env.NODE_ENV.includes('development') ? [] : chromium.args,
           defaultViewport: process.env.NODE_ENV.includes('development') ? undefined : chromium.defaultViewport,
           executablePath: process.env.NODE_ENV.includes('development') ? exePath : await chromium.executablePath(
-            "https://github.com/Sparticuz/chromium/releases/download/v110.0.1/chromium-v110.0.1-pack.tar"
+            "https://github.com/plasmadice/seemail/releases/download/v110.0.1-alpha/chromium-v110.0.1-pack.tar"
           ),
           headless: process.env.NODE_ENV.includes('development') ? true : chromium.headless,
           ignoreHTTPSErrors: process.env.NODE_ENV.includes('development') ? undefined : true,
