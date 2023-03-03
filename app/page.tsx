@@ -18,7 +18,7 @@ export default function Home() {
           Link to GitHub repo
         </a>
       </div>
-      <div className="rounded-b bg-faded-blue max-w-md min-w-md items-center flex flex-col h-80 w-96 text-center place-content-center">
+      <div className="rounded-b bg-faded-blue max-w-md min-w-md items-center flex flex-col h-80 w-96 text-center place-content-start">
         <PinForm />
       </div>
     </div>

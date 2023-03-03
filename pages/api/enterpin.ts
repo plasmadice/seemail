@@ -122,9 +122,10 @@ export default async function handler (
           // close the browser
           await browser.close()
 
+          const error = successResponse ? undefined : "This is a bad thing."
           const msg = successResponse ? `Device with PIN ${pin} is authorized` : "Authorization PIN not found"
 
-          res.status(200).json({ body: msg })
+          res.status(200).json({ body: msg, error })
         } catch (e: any) {
           res.status(400).json({
             body: "Failure AFTER browser creation",

@@ -30,7 +30,7 @@ export default function PinForm() {
     return (
       <div className="flex justify-center items-center">
         <div
-          className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning relative z-0"
+          className="h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-warning relative z-0"
           role="status"
         />
 
@@ -67,17 +67,21 @@ export default function PinForm() {
   }
 
   return (
-    <form onSubmit={sendPin} noValidate className="w-11/12 h-max min-h-fit">
-      <p className="text-white font-mono text-base pb-4">PIN LOGIN</p>
-      <div className="flex flex-col items-center space-y-4">
+    <form
+      onSubmit={sendPin}
+      noValidate
+      className="w-[90%] h-full grid grid-cols-1 place-content-stretch"
+    >
+      <div className="h-[70%] space-y-4 grid grid-cols-1 place-content-stretch">
+        <p className="text-white font-mono text-base pt-4">PIN LOGIN</p>
         <input
           type="text"
           value={text}
           onChange={handleInputChange}
           placeholder='"123456"'
-          className="appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline w-[90%]"
+          className="w-full appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline"
         />
-        <div className="flex items-center space-x-8">
+        <div className="w-full grid grid-cols-2 place-content-center space-x-8">
           <button
             onClick={sendPin}
             className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded"
@@ -94,15 +98,15 @@ export default function PinForm() {
             Clear
           </button>
         </div>
-        <div className="h-full flex flex-col space-y-1 max-w-xs">
-          {waiting && <Spinner />}
-          <span className="text-goldenrod text-lg font-medium italic">
-            {waiting ? "Usually takes 30-50 seconds" : response.body}
-          </span>
-          <span className="error font-bold text-red-900 text-xs italic">
-            {response.error}
-          </span>
-        </div>
+      </div>
+      <div className="w-full h-full grid grid-cols-1 space-y-1 place-content-around">
+        <span className="text-goldenrod text-lg font-medium italic">
+          {waiting ? "Usually takes 30-50 seconds" : response.body}
+        </span>
+        <span className="font-bold text-red-900 text-xs italic place-content-center">
+          {response.error}
+        </span>
+        {waiting && <Spinner />}
       </div>
     </form>
   );
