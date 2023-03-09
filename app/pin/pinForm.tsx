@@ -84,7 +84,7 @@ export default function PinForm() {
         <div className="w-full grid grid-cols-2 place-content-between px-4 gap-10">
           <button
             onClick={sendPin}
-            className="flex-shrink-0 bg-windows-blue hover:bg-firefly text-sm text-white py-1 px-2 rounded row-span-1"
+            className="flex-shrink-0 bg-blue-800 hover:bg-firefly text-sm text-white py-1 px-2 rounded row-span-1"
             type="button"
           >
             Submit

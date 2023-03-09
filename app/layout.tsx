@@ -8,6 +8,7 @@ export const metadata = {
   themeColor: "slate",
   colorScheme: "dark",
   title: "Seemail",
+  description: "Automate adding authorized devices to your account.",
 };
 
 export default function RootLayout({
