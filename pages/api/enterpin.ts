@@ -18,7 +18,7 @@ export default async function handler (
 
     const url = `${process.env.GCP_ENTERPIN_URL}/?pin=${pin}${screenshots ? '&screenshots=true' : ''}`
     console.log(`typeof url: ${typeof url}`)
-    const result = await fetch(url, { cache: "no-store" })
+    const result = await fetch(url, { cache: "no-store", headers: { cors: "no-cors" } })
     const data = await result.json()
     res.status(200).send(data)
   }
