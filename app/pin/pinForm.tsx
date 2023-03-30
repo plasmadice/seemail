@@ -116,7 +116,7 @@ export default function PinForm() {
           </button>
         </div>
       </div>
-      <div
+      {/* <div
         data-tooltip-id="tooltip-text"
         data-tooltip-content="CURRENTLY DISABLED: Enables screenshot mode: Sends screenshots of progress from the server"
         className="w-full grid grid-cols-12 row-span-1 place-content-center"
@@ -135,9 +135,9 @@ export default function PinForm() {
           type="checkbox"
           checked={screenshotChecked}
         />
-      </div>
+      </div> */}
       <div className="w-full grid grid-cols-1 row-span-2 space-y-1 place-content-around">
-        <Tooltip id="tooltip-text" className="text-white h-0" />
+        {/* <Tooltip id="tooltip-text" className="text-white h-0" /> */}
         <span className="text-goldenrod text-lg font-medium italic">
           {waiting ? "Usually takes 30-50 seconds" : response.body}
         </span>
