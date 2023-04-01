@@ -1,9 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
 import ServerMessage from "../../components/ServerMessage";
-import { TfiLayoutPlaceholder } from "react-icons/tfi";
 
 export default function PinForm() {
   type apiResponse = {
