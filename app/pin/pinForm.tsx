@@ -27,7 +27,7 @@ export default function PinForm() {
     e.preventDefault();
 
     // Pull url based on environment
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${text}&screenshots=${demoMode}`;
+    const url = `${process.env.GCP_ENTERPIN_URL}/api/enterpin?pin=${text}&screenshots=${demoMode}`;
 
     const res = await fetch(url, {
       cache: "no-store",
