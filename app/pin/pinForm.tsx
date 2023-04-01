@@ -111,11 +111,11 @@ export default function PinForm() {
           checked={demoMode}
         />
       </a>
-      <Tooltip
+      {/* <Tooltip
         anchorSelect="#tooltip-text"
         content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
         className="break-words w-72"
-      />
+      /> */}
     </form>
   );
 }
