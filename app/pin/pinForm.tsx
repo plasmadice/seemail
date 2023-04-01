@@ -26,6 +26,7 @@ export default function PinForm() {
     setWaiting(true);
     e.preventDefault();
 
+    console.log(`process.env.ENTERPIN_URL = ${process.env.ENTERPIN_URL}`);
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`;
 
     const res = await fetch(url, {
