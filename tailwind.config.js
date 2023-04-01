@@ -1,6 +1,9 @@
 module.exports = {
   darkMode: 'class',
-  content: ['./app/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
+],
   theme: {
     typography: (theme) => ({}),
     extend: {
@@ -13,6 +16,9 @@ module.exports = {
         'windows-blue': '#387adf',
         'goldenrod': '#e6db74',
         'bright-neon-pink': '#f637ec'
+      },
+      boxShadow: {
+        'sharp': '5px 5px 0 0 rgba(0,0,0,1)'
       }
     },
   },

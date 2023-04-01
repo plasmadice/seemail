@@ -6,24 +6,15 @@ export default async function handler (
 ) {
   
   const main = async () => {
-    console.log(`Hitting new endpoint`)
-
-    // const pageUrl: any = process.env.SITE_URL
-  
     const pin: any = req?.query?.pin
     const screenshots: any = req?.query?.screenshots || false
 
-    console.log(`pin: ${pin}`)
-    console.log(`screenshots: ${screenshots}`)
-
-    const url = `${process.env.GCP_ENTERPIN_URL}/?pin=${pin}${screenshots ? '&screenshots=true' : ''}`
-    console.log(`typeof url: ${typeof url}`)
+    const url = `${process.env.GCP_ENTERPIN_URL}/?pin=${pin}&screenshots=${screenshots}`
     const result = await fetch(url, { cache: "no-store", headers: { cors: "no-cors" } })
     const data = await result.json()
-    res.status(200).send(data)
+    res.status(result.status).send(data)
   }
   
-  // main() 
   return main().catch(console.log)
 }
 1
