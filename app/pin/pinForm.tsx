@@ -97,7 +97,6 @@ export default function PinForm() {
         data-tooltip-content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
         className="grid grid-cols-4 place-content-center py-4"
       >
-        <Tooltip id="tooltip-text" />
         <label
           onClick={handleScreenshotMode}
           htmlFor="screenshotMode"
@@ -113,6 +112,7 @@ export default function PinForm() {
           checked={demoMode}
         />
       </div>
+      <Tooltip id="tooltip-text" className="break-words w-72" />
     </form>
   );
 }
