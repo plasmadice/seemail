@@ -8,8 +8,6 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
     alt: "Transparent placeholder image",
   };
 
-  console.log(response.body);
-
   return (
     <div
       className={`w-full h-full grid grid-cols-1 place-content-around relative ${

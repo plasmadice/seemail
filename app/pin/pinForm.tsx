@@ -92,7 +92,7 @@ export default function PinForm() {
           waiting={waiting}
         />
       </div>
-      <div
+      <a
         data-tooltip-id="tooltip-text"
         data-tooltip-content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
         className="grid grid-cols-4 place-content-center py-4"
@@ -111,7 +111,7 @@ export default function PinForm() {
           type="checkbox"
           checked={demoMode}
         />
-      </div>
+      </a>
       <Tooltip id="tooltip-text" className="break-words w-72" />
     </form>
   );
