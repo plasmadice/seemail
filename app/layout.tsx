@@ -1,5 +1,4 @@
 import "./globals.css";
-import "react-tooltip/dist/react-tooltip.css";
 
 export const metadata = {
   generator: "Next.js",
