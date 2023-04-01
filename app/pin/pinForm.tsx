@@ -93,8 +93,7 @@ export default function PinForm() {
         />
       </div>
       <a
-        data-tooltip-id="tooltip-text"
-        data-tooltip-content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
+        id="tooltip-text"
         className="grid grid-cols-4 place-content-center py-4"
       >
         <label
@@ -112,7 +111,11 @@ export default function PinForm() {
           checked={demoMode}
         />
       </a>
-      <Tooltip id="tooltip-text" className="break-words w-72" />
+      <Tooltip
+        anchorSelect="#tooltip-text"
+        content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
+        className="break-words w-72"
+      />
     </form>
   );
 }
