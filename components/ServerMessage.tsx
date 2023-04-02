@@ -19,7 +19,7 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
     <div
       className={`${
         imageIsLarge
-          ? "transition-all ease-out duration-700 w-[48rem] h-[36rem] absolute m-auto inset-0"
+          ? "transition-all ease-out duration-700 w-[64rem] h-[36rem] absolute m-auto inset-0"
           : "w-full h-full relative"
       }  grid grid-cols-1 place-content-around ${
         demoMode ? "shadow-blue-700 shadow-sharp" : ""

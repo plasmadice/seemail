@@ -63,10 +63,10 @@ export default function PinForm() {
     <form
       onSubmit={sendPin}
       noValidate
-      className="p-4 h-full grid grid-cols-1 grid-rows-12"
+      className="h-full grid grid-cols-1 grid-rows-12 place-items-center"
     >
       <div className="space-y-4 grid grid-cols-1 row-span-3 px-6">
-        <p className="text-white font-mono text-base pt-4">PIN LOGIN</p>
+        <p className="text-white font-mono text-base p-4">PIN LOGIN</p>
         <input
           type="text"
           value={text}
@@ -84,27 +84,24 @@ export default function PinForm() {
           </button>
         </div>
       </div>
-      <div className="w-80 h-60 md:w-96 md:h-72 py-4">
+      <div className="w-96 h-56 py-4">
         <ServerMessage
           response={response}
           demoMode={demoMode}
           waiting={waiting}
         />
       </div>
-      <a
-        id="tooltip-text"
-        className="grid grid-cols-4 place-content-center py-4"
-      >
+      <a id="tooltip-text" className="grid grid-cols-6 py-4">
         <label
           onClick={handleScreenshotMode}
           htmlFor="screenshotMode"
-          className="col-span-3 text-white"
+          className="col-start-2 col-span-3 text-white"
         >
           Screenshot when done?
         </label>
         <input
           onChange={handleScreenshotMode}
-          className="h-6 w-6"
+          className="h-6 w-6 col-start-5 justify-self-end"
           name="screenshotMode"
           type="checkbox"
           checked={demoMode}
