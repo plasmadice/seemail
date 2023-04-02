@@ -26,11 +26,9 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
       }`}
     >
       {waiting && <Spinner />}
-      <span className="text-black text-lg font-medium italic z-30">
+      <span className="text-white text-lg font-medium italic z-30 text-left">
         <p>{response.body}</p>
-      </span>
-      <span className="text-rose-900 font-bold text-xs italic place-content-center z-10">
-        {response.error}
+        <p>{response.error}</p>
       </span>
       {demoMode && (
         <Image
