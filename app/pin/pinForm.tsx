@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
+// import "react-tooltip/dist/react-tooltip.css";
 import ServerMessage from "../../components/ServerMessage";
 
 export default function PinForm() {
@@ -26,6 +26,7 @@ export default function PinForm() {
     setWaiting(true);
     e.preventDefault();
 
+    console.log(`process.env.DEFAULT_SEARCH = ${process.env.DEFAULT_SEARCH}`);
     console.log(`process.env.ENTERPIN_URL = ${process.env.ENTERPIN_URL}`);
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`;
 
