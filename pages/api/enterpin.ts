@@ -10,7 +10,7 @@ export default async function handler (
     const screenshots: any = req?.query?.screenshots || false
 
     const url = `${process.env.ENTERPIN_URL}/?pin=${pin}&screenshots=${screenshots}`
-    const result = await fetch(url, { cache: "no-store", headers: { cors: "no-cors" } })
+    const result = await fetch(url, { cache: "no-store" })
     const data = await result.json()
     res.status(result.status).send(data)
   }

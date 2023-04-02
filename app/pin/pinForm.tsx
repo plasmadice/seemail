@@ -30,7 +30,6 @@ export default function PinForm() {
 
     const res = await fetch(url, {
       cache: "no-store",
-      headers: { cors: "no-cors" },
     });
 
     const status = res.status;
