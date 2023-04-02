@@ -10,6 +10,9 @@ const nextConfig = {
         hostname: '**.run.app',
       }
     ]
+  },
+  env: {
+    ENTERPIN_URL: process.env.ENTERPIN_URL
   }
 }
 

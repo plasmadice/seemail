@@ -26,14 +26,13 @@ export default function PinForm() {
     setWaiting(true);
     e.preventDefault();
 
-    console.log(`process.env.DEFAULT_SEARCH = ${process.env.DEFAULT_SEARCH}`);
-    console.log(`process.env.ENTERPIN_URL = ${process.env.ENTERPIN_URL}`);
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`;
 
     const res = await fetch(url, {
       cache: "no-store",
       headers: { cors: "no-cors" },
     });
+
     const status = res.status;
     const data: apiResponse = await res.json();
     const body = data.body;
