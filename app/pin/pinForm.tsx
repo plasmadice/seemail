@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-// import { Tooltip } from "react-tooltip";
-// import "react-tooltip/dist/react-tooltip.css";
 import ServerMessage from "../../components/ServerMessage";
 
 export default function PinForm() {
@@ -71,8 +69,8 @@ export default function PinForm() {
           type="text"
           value={text}
           onChange={handleInputChange}
-          placeholder='"123456" - usually takes 30-50 seconds'
-          className="w-full appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline rounded-sm"
+          placeholder="Ex 123456. Takes ~30-60 seconds"
+          className="w-72 appearance-none bg-blue-haze border-none text-gray-700 py-1 px-2 leading-tight focus:outline rounded-sm"
         />
         <div className="w-full m-auto content-center gap-4 px-4">
           <button
@@ -91,7 +89,7 @@ export default function PinForm() {
           waiting={waiting}
         />
       </div>
-      <a id="tooltip-text" className="grid grid-cols-6 py-4">
+      <button className="grid grid-cols-6 py-4">
         <label
           onClick={handleScreenshotMode}
           htmlFor="screenshotMode"
@@ -103,10 +101,11 @@ export default function PinForm() {
           onChange={handleScreenshotMode}
           className="h-6 w-6 col-start-5 justify-self-end hover:"
           name="screenshotMode"
+          id="screenshotMode"
           type="checkbox"
           checked={demoMode}
         />
-      </a>
+      </button>
       {/* <Tooltip
         anchorSelect="#tooltip-text"
         content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."

@@ -16,9 +16,16 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
   //   setImageIsLarge((prev) => !prev);
   // };
   let handleClick = (e: any) => {
-    if (!response.imageStr) {
-      e.preventDefault();
-    }
+    // if (!response.imageStr) {
+    //   e.preventDefault();
+    // }
+    const newTab = window.open();
+
+    newTab?.document.write(
+      `<!DOCTYPE html><head><title>Document preview</title></head><body><img src="data:image/png;base64,${JSON.parse(
+        response.imageStr
+      )}"></body></html>`
+    );
   };
 
   return (
@@ -50,13 +57,14 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
                   ? "Screenshot of last action on server"
                   : placeHolder.alt
               }
-              // className="px-4 hover:z-20 hover:cursor-pointer"
-              className="px-4 hover:z-20 hover:cursor-pointer"
+              className="blur-sm hover:blur-none px-4 z-10 hover:cursor-pointer"
               onClick={handleClick}
               fill
             />
             {response.imageStr ? (
-              <p className="text-white">Click to open image in new tab</p>
+              <p className="text-white font-medium z-30 relative">
+                Click to open image in new tab
+              </p>
             ) : null}
           </a>
         )}
