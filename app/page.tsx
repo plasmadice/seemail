@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import PinForm from "./pin/pinForm";
-import Footer from "../components/Footer";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (

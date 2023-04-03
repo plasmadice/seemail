@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import ServerMessage from "../../components/ServerMessage";
+import ServerMessage from "./../components/ServerMessage";
 
 export default function PinForm() {
   type apiResponse = {
@@ -48,7 +48,8 @@ export default function PinForm() {
     setText(e.target.value);
   }
 
-  async function handleScreenshotMode() {
+  async function handleScreenshotMode(e) {
+    e.preventDefault();
     setDemoMode((prev) => {
       !prev
         ? setText((oldText) => (oldText.length ? oldText : "123456"))
@@ -89,17 +90,17 @@ export default function PinForm() {
           waiting={waiting}
         />
       </div>
-      <button className="grid grid-cols-6 py-4">
+      <button onClick={handleScreenshotMode} className="grid grid-cols-6 py-4">
         <label
-          onClick={handleScreenshotMode}
+          // onClick={handleScreenshotMode}
           htmlFor="screenshotMode"
-          className="col-start-2 col-span-3 text-white"
+          className="col-start-2 col-span-3 text-white hover:cursor-pointer"
         >
           Screenshot when done?
         </label>
         <input
-          onChange={handleScreenshotMode}
-          className="h-6 w-6 col-start-5 justify-self-end hover:"
+          // onChange={handleScreenshotMode}
+          className="h-6 w-6 col-start-5 justify-self-end hover:cursor-pointer"
           name="screenshotMode"
           id="screenshotMode"
           type="checkbox"

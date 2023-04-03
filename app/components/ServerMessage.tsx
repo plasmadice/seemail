@@ -1,30 +1,21 @@
-// import { useState } from "react";
 import Image from "next/image";
 import Spinner from "./Spinner";
 
 export default function ServerMessage({ response, demoMode, waiting }: any) {
   const placeHolder: any = {
-    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
-    demo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==",
+    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==",
     alt: "Transparent placeholder image",
     link: "#",
   };
+  const imagSrc = response.imageStr
+    ? `data:image/png;base64,${JSON.parse(response.imageStr)}`
+    : placeHolder.src;
 
-  // const [imageIsLarge, setImageIsLarge] = useState(false);
-
-  // let handleClick = () => {
-  //   setImageIsLarge((prev) => !prev);
-  // };
   let handleClick = (e: any) => {
-    // if (!response.imageStr) {
-    //   e.preventDefault();
-    // }
     const newTab = window.open();
 
     newTab?.document.write(
-      `<!DOCTYPE html><head><title>Document preview</title></head><body><img src="data:image/png;base64,${JSON.parse(
-        response.imageStr
-      )}"></body></html>`
+      `<!DOCTYPE html><head><title>Document preview</title></head><body><img src="data:image/png;base64,${imagSrc}"></body></html>`
     );
   };
 
@@ -37,21 +28,9 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
       </span>
       <div className="w-full h-full">
         {demoMode && (
-          <a
-            href={
-              response.imageStr
-                ? `data:image/png;base64,${JSON.parse(response.imageStr)}`
-                : placeHolder.link
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={imagSrc} target="_blank" rel="noreferrer">
             <Image
-              src={
-                response.imageStr
-                  ? `data:image/png;base64,${JSON.parse(response.imageStr)}`
-                  : placeHolder.demo
-              }
+              src={imagSrc}
               alt={
                 response.imageStr
                   ? "Screenshot of last action on server"
