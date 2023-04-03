@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 export default function Home() {
   return (
     <div className="max-h-screen m-auto bg-inherit flex flex-col">
-      <div className="rounded-b bg-rhino items-center flex flex-col h-auto w-[90vw] lg:w-fit text-center place-content-start">
+      <div className=" w-fit rounded-b bg-rhino items-center flex flex-col h-auto text-center place-content-start">
         <Link
           className="pt-4 text-white font-mono text-base hover:underline"
           href="/code"

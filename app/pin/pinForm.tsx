@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Tooltip } from "react-tooltip";
+// import { Tooltip } from "react-tooltip";
 // import "react-tooltip/dist/react-tooltip.css";
 import ServerMessage from "../../components/ServerMessage";
 
@@ -63,7 +63,7 @@ export default function PinForm() {
     <form
       onSubmit={sendPin}
       noValidate
-      className="h-full grid grid-cols-1 grid-rows-12 place-items-center"
+      className="h-full w-full grid grid-cols-1 grid-rows-12 place-items-center"
     >
       <div className="space-y-4 grid grid-cols-1 row-span-3 px-6">
         <p className="text-white font-mono text-base p-4">PIN LOGIN</p>
@@ -77,14 +77,14 @@ export default function PinForm() {
         <div className="w-full m-auto content-center gap-4 px-4">
           <button
             onClick={sendPin}
-            className="bg-blue-600 hover:scale-105 hover:bg-blue-800 transition-all text-sm text-white py-1 rounded-sm w-full uppercase font-medium"
+            className="bg-blue-600 hover:bg-blue-800 transition-all text-sm text-white py-1 rounded-sm w-full uppercase font-medium"
             type="button"
           >
             Enter Pin
           </button>
         </div>
       </div>
-      <div className="w-96 h-56 py-4">
+      <div className="w-full h-full py-4">
         <ServerMessage
           response={response}
           demoMode={demoMode}
@@ -101,7 +101,7 @@ export default function PinForm() {
         </label>
         <input
           onChange={handleScreenshotMode}
-          className="h-6 w-6 col-start-5 justify-self-end"
+          className="h-6 w-6 col-start-5 justify-self-end hover:"
           name="screenshotMode"
           type="checkbox"
           checked={demoMode}
