@@ -12,11 +12,14 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
     : `data:image/png;base64,${placeHolder.src}`
 
   let handleClick = (e: any) => {
-    const newTab = window.open()
+    e.preventDefault()
+    if (response.imageStr) {
+      const newTab = window.open()
 
-    newTab?.document.write(
-      `<!DOCTYPE html><head><title>Document preview</title></head><body><img width="auto" height="auto" src="${imagSrc}"></body></html>`
-    )
+      newTab?.document.write(
+        `<!DOCTYPE html><head><title>Seemail full-size image</title></head><body><img width="auto" height="auto" src="${imagSrc}"></body></html>`
+      )
+    }
   }
 
   return (
@@ -29,7 +32,7 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
       <div className='h-full w-full'>
         {demoMode && (
           <a
-            className='absolute inset-0 h-full w-full'
+            className='absolute inset-0 h-full w-full hover:cursor-default'
             href={imagSrc}
             target='_blank'
             rel='noreferrer'
@@ -41,7 +44,12 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
                   ? 'Screenshot of last action on server'
                   : placeHolder.alt
               }
-              className='z-10 px-4 blur-sm hover:cursor-pointer hover:blur-none'
+              // className='blur-sm hover:cursor-pointer hover:blur-none'
+              className={`z-10 px-4${
+                response.imageStr
+                  ? ' blur-sm hover:cursor-pointer hover:blur-none'
+                  : ''
+              }`}
               onClick={handleClick}
               fill
             />
