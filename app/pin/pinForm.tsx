@@ -53,7 +53,6 @@ export default function PinForm() {
   }
 
   async function handleScreenshotMode(e: any) {
-    e.preventDefault()
     setDemoMode((prev: boolean) => {
       !prev
         ? setText((oldText: string) => (oldText.length ? oldText : '123456'))
@@ -94,20 +93,20 @@ export default function PinForm() {
           waiting={waiting}
         />
       </div>
-      <a onClick={handleScreenshotMode} className='w-full py-4'>
-        <label
-          htmlFor='screenshotMode'
-          className='grid grid-cols-6 text-white hover:cursor-pointer'
-        >
-          <span className='col-start-2 col-span-3'>Screenshot when done?</span>
-          <input
-            className='h-6 w-6 hover:cursor-pointer'
-            id='screenshotMode'
-            type='checkbox'
-            defaultChecked={demoMode}
-          />
-        </label>
-      </a>
+      <label
+        htmlFor='screenshotMode'
+        className='w-full py-4 grid grid-cols-6 text-white hover:cursor-pointer'
+      >
+        <span className='col-start-2 col-span-3'>Screenshot when done?</span>
+        <input
+          onChange={handleScreenshotMode}
+          className='h-6 w-6 hover:cursor-pointer'
+          id='screenshotMode'
+          type='checkbox'
+          // checked={demoMode}
+          defaultChecked={false}
+        />
+      </label>
     </form>
   )
 }
