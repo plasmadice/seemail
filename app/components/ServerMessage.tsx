@@ -1,23 +1,23 @@
-import Image from "next/image";
-import Spinner from "./Spinner";
+import Image from 'next/image'
+import Spinner from './Spinner'
 
 export default function ServerMessage({ response, demoMode, waiting }: any) {
   const placeHolder: any = {
-    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==",
-    alt: "Transparent placeholder image",
-    link: "#",
-  };
+    src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==',
+    alt: 'Transparent placeholder image',
+    link: '#',
+  }
   const imagSrc = response.imageStr
     ? `data:image/png;base64,${JSON.parse(response.imageStr)}`
-    : placeHolder.src;
+    : placeHolder.src
 
   let handleClick = (e: any) => {
-    const newTab = window.open();
+    const newTab = window.open()
 
     newTab?.document.write(
       `<!DOCTYPE html><head><title>Document preview</title></head><body><img src="data:image/png;base64,${imagSrc}"></body></html>`
-    );
-  };
+    )
+  }
 
   return (
     <div className="w-96 h-56 relative grid grid-cols-1 content-around justify-items-center">
@@ -33,7 +33,7 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
               src={imagSrc}
               alt={
                 response.imageStr
-                  ? "Screenshot of last action on server"
+                  ? 'Screenshot of last action on server'
                   : placeHolder.alt
               }
               className="blur-sm hover:blur-none px-4 z-10 hover:cursor-pointer"
@@ -49,5 +49,5 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
         )}
       </div>
     </div>
-  );
+  )
 }
