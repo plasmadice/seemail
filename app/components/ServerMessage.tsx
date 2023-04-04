@@ -3,19 +3,19 @@ import Spinner from './Spinner'
 
 export default function ServerMessage({ response, demoMode, waiting }: any) {
   const placeHolder: any = {
-    src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==',
+    src: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP838BQDwAGBQIApcDNuAAAAABJRU5ErkJggg==',
     alt: 'Transparent placeholder image',
     link: '#',
   }
   const imagSrc = response.imageStr
     ? `data:image/png;base64,${JSON.parse(response.imageStr)}`
-    : placeHolder.src
+    : `data:image/png;base64,${placeHolder.src}`
 
   let handleClick = (e: any) => {
     const newTab = window.open()
 
     newTab?.document.write(
-      `<!DOCTYPE html><head><title>Document preview</title></head><body><img src="data:image/png;base64,${imagSrc}"></body></html>`
+      `<!DOCTYPE html><head><title>Document preview</title></head><body><img width="auto" height="auto" src="${imagSrc}"></body></html>`
     )
   }
 
@@ -28,7 +28,12 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
       </span>
       <div className='h-full w-full'>
         {demoMode && (
-          <a href={imagSrc} target='_blank' rel='noreferrer'>
+          <a
+            className='absolute inset-0 h-full w-full'
+            href={imagSrc}
+            target='_blank'
+            rel='noreferrer'
+          >
             <Image
               src={imagSrc}
               alt={
