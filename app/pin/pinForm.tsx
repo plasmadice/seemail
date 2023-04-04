@@ -103,7 +103,6 @@ export default function PinForm() {
           className='h-6 w-6 hover:cursor-pointer'
           id='screenshotMode'
           type='checkbox'
-          // checked={demoMode}
           defaultChecked={false}
         />
       </label>

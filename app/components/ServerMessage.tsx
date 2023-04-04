@@ -44,7 +44,6 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
                   ? 'Screenshot of last action on server'
                   : placeHolder.alt
               }
-              // className='blur-sm hover:cursor-pointer hover:blur-none'
               className={`z-10 px-4${
                 response.imageStr
                   ? ' blur-sm hover:cursor-pointer hover:blur-none'
