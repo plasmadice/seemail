@@ -40,7 +40,7 @@ export default function PinForm() {
   }
 
   async function handleClearInput() {
-    setText((prev) => (response.status ? '' : prev))
+    setText((prev: string) => (response.status ? '' : prev))
     setWaiting(false)
   }
 
@@ -48,12 +48,12 @@ export default function PinForm() {
     setText(e.target.value)
   }
 
-  async function handleScreenshotMode(e) {
+  async function handleScreenshotMode(e: any) {
     e.preventDefault()
-    setDemoMode((prev) => {
+    setDemoMode((prev: boolean) => {
       !prev
-        ? setText((oldText) => (oldText.length ? oldText : '123456'))
-        : setText((oldText) => (oldText.length ? oldText : ''))
+        ? setText((oldText: string) => (oldText.length ? oldText : '123456'))
+        : setText((oldText: string) => (oldText.length ? oldText : ''))
       return !prev
     })
   }
@@ -99,7 +99,7 @@ export default function PinForm() {
           Screenshot when done?
         </label>
         <input
-          // onChange={handleScreenshotMode}
+          onChange={handleScreenshotMode}
           className='col-start-5 h-6 w-6 justify-self-end hover:cursor-pointer'
           name='screenshotMode'
           id='screenshotMode'

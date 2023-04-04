@@ -6,7 +6,7 @@ export default function Spinner({ duration = 90 }) {
 
   useEffect(() => {
     const countId = setInterval(() => {
-      setCount((prev) => prev - 1)
+      setCount((prev: number) => prev - 1)
     }, 1000)
 
     return () => clearInterval(countId)
