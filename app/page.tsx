@@ -1,22 +1,22 @@
-"use client";
-import Link from "next/link";
-import PinForm from "./pin/pinForm";
-import Footer from "./components/Footer";
+'use client'
+import Link from 'next/link'
+import PinForm from './pin/pinForm'
+import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <div className="max-h-screen m-auto bg-inherit flex flex-col">
-      <div className=" w-fit rounded-b bg-rhino items-center flex flex-col h-auto text-center place-content-start">
+    <div className='m-auto flex max-h-screen flex-col bg-inherit'>
+      <div className=' flex h-auto w-fit flex-col place-content-start items-center rounded-b bg-rhino text-center'>
         <Link
-          className="pt-4 text-white font-mono text-base hover:underline"
-          href="/code"
+          className='pt-4 font-mono text-base text-white hover:underline'
+          href='/code'
           prefetch={false}
         >
-          {">"}Retrieve newest code from email{"<"}
+          {'>'}Retrieve newest code from email{'<'}
         </Link>
         <PinForm />
         <Footer />
       </div>
     </div>
-  );
+  )
 }

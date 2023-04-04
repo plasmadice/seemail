@@ -4,8 +4,8 @@ export default function Error({
   error,
   reset,
 }: {
-  error: Error;
-  reset: () => void;
+  error: Error
+  reset: () => void
 }) {
   return (
     <div>
@@ -13,5 +13,5 @@ export default function Error({
       <code>{error.message}</code>
       <button onClick={() => reset()}>Try again</button>
     </div>
-  );
+  )
 }

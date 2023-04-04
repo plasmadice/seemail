@@ -8,12 +8,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.run.app',
-      }
-    ]
+      },
+    ],
   },
   env: {
-    ENTERPIN_URL: process.env.ENTERPIN_URL
-  }
+    ENTERPIN_URL: process.env.ENTERPIN_URL,
+  },
 }
 
 module.exports = nextConfig

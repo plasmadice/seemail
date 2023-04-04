@@ -1,19 +1,19 @@
 export default async function CodePage() {
   async function getCode() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`;
-    const res = await fetch(url, { cache: "no-store" });
-    const data = await res.json();
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`
+    const res = await fetch(url, { cache: 'no-store' })
+    const data = await res.json()
 
-    data.date = new Date(data?.date).toLocaleString("en-US");
+    data.date = new Date(data?.date).toLocaleString('en-US')
 
-    return data;
+    return data
   }
 
-  const code = await getCode();
+  const code = await getCode()
   return (
     <div>
-      <p className="text-2xl font-semibold">{code.code}</p>
-      <p className="text-sm italic">Sent: {code.date}</p>
+      <p className='text-2xl font-semibold'>{code.code}</p>
+      <p className='text-sm italic'>Sent: {code.date}</p>
     </div>
-  );
+  )
 }

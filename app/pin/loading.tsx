@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <p>Sending pin... </p>;
+  return <p>Sending pin... </p>
 }

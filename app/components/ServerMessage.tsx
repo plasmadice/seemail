@@ -20,15 +20,15 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
   }
 
   return (
-    <div className="w-96 h-56 relative grid grid-cols-1 content-around justify-items-center">
+    <div className='relative grid h-56 w-96 grid-cols-1 content-around justify-items-center'>
       {waiting && <Spinner />}
-      <span className="text-white text-lg font-medium italic z-30 text-left">
+      <span className='z-30 text-left text-lg font-medium italic text-white'>
         <p>{response.body}</p>
         <p>{response.error}</p>
       </span>
-      <div className="w-full h-full">
+      <div className='h-full w-full'>
         {demoMode && (
-          <a href={imagSrc} target="_blank" rel="noreferrer">
+          <a href={imagSrc} target='_blank' rel='noreferrer'>
             <Image
               src={imagSrc}
               alt={
@@ -36,12 +36,12 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
                   ? 'Screenshot of last action on server'
                   : placeHolder.alt
               }
-              className="blur-sm hover:blur-none px-4 z-10 hover:cursor-pointer"
+              className='z-10 px-4 blur-sm hover:cursor-pointer hover:blur-none'
               onClick={handleClick}
               fill
             />
             {response.imageStr ? (
-              <p className="text-white font-medium z-30 relative">
+              <p className='relative z-30 font-medium text-white'>
                 Click to open image in new tab
               </p>
             ) : null}

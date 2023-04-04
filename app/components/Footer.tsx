@@ -1,27 +1,27 @@
-import { VscGithubAlt } from "react-icons/vsc";
+import { VscGithubAlt } from 'react-icons/vsc'
 
 export default function Footer() {
   return (
-    <div className="min-h-16 absolute bottom-0 w-screen bg-zinc-700 text-center grid grid-rows-1 grid-cols-2 py-2">
-      <div className="m-auto">
+    <div className='min-h-16 absolute bottom-0 grid w-screen grid-cols-2 grid-rows-1 bg-zinc-700 py-2 text-center'>
+      <div className='m-auto'>
         <a
-          className="text-white font-mono text-base hover:underline"
-          target="_blank"
-          rel="noreferrer"
-          href="https://github.com/plasmadice/seemail"
+          className='font-mono text-base text-white hover:underline'
+          target='_blank'
+          rel='noreferrer'
+          href='https://github.com/plasmadice/seemail'
         >
-          {<VscGithubAlt className="m-auto" />}
+          {<VscGithubAlt className='m-auto' />}
           Link to GitHub repo
         </a>
       </div>
       <a
-        className="text-2xl text-white font-medium hover:underline m-auto"
-        target="_blank"
-        rel="noreferrer"
-        href="https://hwhite.dev/"
+        className='m-auto text-2xl font-medium text-white hover:underline'
+        target='_blank'
+        rel='noreferrer'
+        href='https://hwhite.dev/'
       >
         more by me ;)
       </a>
     </div>
-  );
+  )
 }
