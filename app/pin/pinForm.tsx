@@ -11,18 +11,22 @@ export default function PinForm() {
   }
 
   const [text, setText] = useState('')
-  const [response, setResponse] = useState<apiResponse>({
+  let emptyResponse: apiResponse = {
     status: 0,
     body: '',
     error: '',
     imageStr: '',
-  })
+  }
+
+  const [response, setResponse] = useState<apiResponse>(emptyResponse)
+
   const [waiting, setWaiting] = useState(false)
   const [demoMode, setDemoMode] = useState(false)
 
   async function sendPin(e: any) {
     setWaiting(true)
     e.preventDefault()
+    setResponse(emptyResponse)
 
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`
 
@@ -90,28 +94,20 @@ export default function PinForm() {
           waiting={waiting}
         />
       </div>
-      <button onClick={handleScreenshotMode} className='grid grid-cols-6 py-4'>
+      <a onClick={handleScreenshotMode} className='w-full py-4'>
         <label
-          // onClick={handleScreenshotMode}
           htmlFor='screenshotMode'
-          className='col-span-3 col-start-2 text-white hover:cursor-pointer'
+          className='grid grid-cols-6 text-white hover:cursor-pointer'
         >
-          Screenshot when done?
+          <span className='col-start-2 col-span-3'>Screenshot when done?</span>
+          <input
+            className='h-6 w-6 hover:cursor-pointer'
+            id='screenshotMode'
+            type='checkbox'
+            defaultChecked={demoMode}
+          />
         </label>
-        <input
-          onChange={handleScreenshotMode}
-          className='col-start-5 h-6 w-6 justify-self-end hover:cursor-pointer'
-          name='screenshotMode'
-          id='screenshotMode'
-          type='checkbox'
-          checked={demoMode}
-        />
-      </button>
-      {/* <Tooltip
-        anchorSelect="#tooltip-text"
-        content="Experimental: Sends a screenshot of the LAST thing done on the server. Clicking this adds a default pin to the input."
-        className="break-words w-72"
-      /> */}
+      </a>
     </form>
   )
 }

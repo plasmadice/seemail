@@ -1,5 +1,0 @@
-# Ignore artifacts:
-.next
-.vscode
-next-env.d.ts
-package.json
