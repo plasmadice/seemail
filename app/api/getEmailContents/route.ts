@@ -1,40 +1,40 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-const { ImapFlow } = require('imapflow')
+import { ImapFlow } from "imapflow"
+import { NextResponse } from "next/server"
 
-const messages: any = []
-
-export default function handler(req: any, res: any) {
+export async function GET(request: Request) {
   const client = new ImapFlow({
-    host: process.env.HOST,
-    port: process.env.PORT,
+    host: process.env.HOST as string,
+    port: process.env.PORT as unknown as number,
     secure: true,
     auth: {
-      user: process.env.AUTH_USER,
+      user: process.env.AUTH_USER as string,
       pass: process.env.AUTH_PASS,
     },
     logger: false,
   })
+
+  let data = { code: "123456", date: "2021-08-01T00:00:00.000Z" }
 
   const main = async () => {
     // Wait until client connects and authorizes
     await client.connect()
 
     // // Select and lock a mailbox. Throws if mailbox does not exist
-    let lock = await client.getMailboxLock('INBOX')
+    let lock = await client.getMailboxLock("INBOX")
 
     try {
       let list = await client.search({ subject: process.env.DEFAULT_SEARCH })
 
-      let lastMsg = list[list.length - 1]
-      // console.log(lastMsg)
+      let lastMsg: any = list[list.length - 1]
 
       let msg = await client.fetchOne(lastMsg, { envelope: true, source: true })
       const indexOfBold = msg.source.toString().indexOf("bold;'")
       let rest = msg.source.toString().slice(indexOfBold + 7)
-      const code = rest.split('</p>')[0]
-      const date = msg.envelope.date
-
-      res.status(200).json({ code, date })
+      const code = rest.split("</p>")[0]
+      const date: any = msg.envelope.date
+      data = { code, date }
+      console.log(`code: ${code}, date: ${date}`)
     } finally {
       // Make sure lock is released, otherwise next `getMailboxLock()` never returns
       lock.release()
@@ -43,6 +43,6 @@ export default function handler(req: any, res: any) {
     await client.logout()
   }
 
-  // main()
-  return main().catch((err) => err)
+  await main()
+  return NextResponse.json(data)
 }

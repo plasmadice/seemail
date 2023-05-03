@@ -1,6 +1,6 @@
-'use client'
-import { useState } from 'react'
-import ServerMessage from './../components/ServerMessage'
+"use client"
+import { useState } from "react"
+import ServerMessage from "./../components/ServerMessage"
 
 export default function PinForm() {
   type apiResponse = {
@@ -10,12 +10,12 @@ export default function PinForm() {
     imageStr: string | undefined
   }
 
-  const [text, setText] = useState('')
+  const [text, setText] = useState("")
   let emptyResponse: apiResponse = {
     status: 0,
-    body: '',
-    error: '',
-    imageStr: '',
+    body: "",
+    error: "",
+    imageStr: "",
   }
 
   const [response, setResponse] = useState<apiResponse>(emptyResponse)
@@ -31,7 +31,7 @@ export default function PinForm() {
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`
 
     const res = await fetch(url, {
-      cache: 'no-store',
+      cache: "no-store",
     })
 
     const status = res.status
@@ -44,7 +44,7 @@ export default function PinForm() {
   }
 
   async function handleClearInput() {
-    setText((prev: string) => (response.status ? '' : prev))
+    setText((prev: string) => (response.status ? "" : prev))
     setWaiting(false)
   }
 
@@ -55,8 +55,8 @@ export default function PinForm() {
   async function handleScreenshotMode(e: any) {
     setDemoMode((prev: boolean) => {
       !prev
-        ? setText((oldText: string) => (oldText.length ? oldText : '123456'))
-        : setText((oldText: string) => (oldText.length ? oldText : ''))
+        ? setText((oldText: string) => (oldText.length ? oldText : "123456"))
+        : setText((oldText: string) => (oldText.length ? oldText : ""))
       return !prev
     })
   }
@@ -65,28 +65,28 @@ export default function PinForm() {
     <form
       onSubmit={sendPin}
       noValidate
-      className='grid-rows-12 grid h-full w-full grid-cols-1 place-items-center'
+      className="grid-rows-12 grid h-full w-full grid-cols-1 place-items-center"
     >
-      <div className='row-span-3 grid grid-cols-1 space-y-4 px-6'>
-        <p className='p-4 font-mono text-base text-white'>PIN LOGIN</p>
+      <div className="row-span-3 grid grid-cols-1 space-y-4 px-6">
+        <p className="p-4 font-mono text-base text-white">PIN LOGIN</p>
         <input
-          type='text'
+          type="text"
           value={text}
           onChange={handleInputChange}
-          placeholder='Ex 123456. Takes ~30-60 seconds'
-          className='w-72 appearance-none rounded-sm border-none bg-blue-haze py-1 px-2 leading-tight text-gray-700 focus:outline'
+          placeholder="Ex 123456. Takes ~30-60 seconds"
+          className="w-72 appearance-none rounded-sm border-none bg-blue-haze py-1 px-2 leading-tight text-gray-700 focus:outline"
         />
-        <div className='m-auto w-full content-center gap-4 px-4'>
+        <div className="m-auto w-full content-center gap-4 px-4">
           <button
             onClick={sendPin}
-            className='w-full rounded-sm bg-blue-600 py-1 text-sm font-medium uppercase text-white transition-all hover:bg-blue-800'
-            type='button'
+            className="w-full rounded-sm bg-blue-600 py-1 text-sm font-medium uppercase text-white transition-all hover:bg-blue-800"
+            type="button"
           >
             Enter Pin
           </button>
         </div>
       </div>
-      <div className='h-full w-full py-4'>
+      <div className="h-full w-full py-4">
         <ServerMessage
           response={response}
           demoMode={demoMode}
@@ -94,15 +94,15 @@ export default function PinForm() {
         />
       </div>
       <label
-        htmlFor='screenshotMode'
-        className='w-full py-4 grid grid-cols-6 text-white hover:cursor-pointer'
+        htmlFor="screenshotMode"
+        className="w-full py-4 grid grid-cols-6 text-white hover:cursor-pointer"
       >
-        <span className='col-start-2 col-span-3'>Screenshot when done?</span>
+        <span className="col-start-2 col-span-3">Screenshot when done?</span>
         <input
           onChange={handleScreenshotMode}
-          className='h-6 w-6 hover:cursor-pointer'
-          id='screenshotMode'
-          type='checkbox'
+          className="h-6 w-6 hover:cursor-pointer"
+          id="screenshotMode"
+          type="checkbox"
           defaultChecked={false}
         />
       </label>
