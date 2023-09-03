@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 async function getCode() {
   const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`
 
