@@ -18,7 +18,7 @@ export default function Footer() {
         className='m-auto text-2xl font-medium text-base-content hover:underline'
         target='_blank'
         rel='noreferrer'
-        href='https://hwhite.dev/'
+        href='https://hwhite.dev/portfolio'
       >
         more by me ;)
       </a>
