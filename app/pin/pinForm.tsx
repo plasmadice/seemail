@@ -89,7 +89,7 @@ export default function PinForm() {
         <div className="m-auto w-full content-center gap-4 px-4">
           <button
             onClick={sendPin}
-            className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg w-full bg-secondary hover:bg-secondary-focus text-secondary-content py-1 text-sm font-medium uppercase transition-all"
+            className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg w-full bg-secondary hover:bg-secondary-focus text-secondary-content py-1 text-sm font-medium uppercase transition-all content-center"
             type="button"
           >
             Enter Pin
