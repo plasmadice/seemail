@@ -2,6 +2,8 @@
 import { ImapFlow } from "imapflow"
 import { NextResponse } from "next/server"
 
+export const revalidate = 0
+
 export async function GET(request: Request) {
   const client = new ImapFlow({
     host: process.env.HOST as string,
@@ -34,7 +36,6 @@ export async function GET(request: Request) {
       const code = rest.split("</p>")[0]
       const date: any = msg.envelope.date
       data = { code, date }
-      console.log(`code: ${code}, date: ${date}`)
     } finally {
       // Make sure lock is released, otherwise next `getMailboxLock()` never returns
       lock.release()

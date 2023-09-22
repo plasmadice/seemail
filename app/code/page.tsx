@@ -1,4 +1,4 @@
-export const revalidate = 0;
+export const runtime = "edge"
 
 async function getCode() {
   const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`
