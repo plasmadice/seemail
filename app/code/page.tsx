@@ -14,9 +14,17 @@ async function getCode() {
 export default async function page() {
   const code = await getCode()
   return (
-    <div>
-      <p className="text-2xl font-semibold">{code.code}</p>
-      <p className="text-sm italic">Sent: {code.date}</p>
+    <div className="mockup-phone border-primary">
+      <div className="camera"></div>
+      <div className="display">
+        <div className="artboard artboard-demo phone-1">
+          {" "}
+          <div className="text-base-content content-center m-auto">
+            <p className="text-2xl font-semibold">{code.code}</p>
+            <p className="text-sm italic">Sent: {code.date}</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
