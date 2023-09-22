@@ -22,10 +22,13 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
     }
   }
 
+  const visibility = response.status === 0 ? "hidden" : "visible"
+  const serverMessageStyle = `${visibility} mt-6 relative grid h-56 w-96 grid-cols-1 content-around justify-items-center z-20`
+
   return (
-    <div className="relative grid h-56 w-96 grid-cols-1 content-around justify-items-center z-20">
+    <div className={serverMessageStyle}>
       {waiting && <Spinner />}
-      <span className="z-30 text-left text-lg font-medium italic text-white">
+      <span className="z-30 text-left text-lg font-medium italic text-base-content">
         <p>{response.body}</p>
         <p>{response.error}</p>
       </span>
@@ -53,7 +56,7 @@ export default function ServerMessage({ response, demoMode, waiting }: any) {
               fill
             />
             {response.imageStr ? (
-              <p className="relative z-30 font-medium text-white">
+              <p className="relative z-30 font-medium text-base-content">
                 Click to open image in new tab
               </p>
             ) : null}

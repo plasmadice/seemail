@@ -26,6 +26,8 @@ export default function PinForm() {
   async function sendPin(e: any) {
     setWaiting(true)
     e.preventDefault()
+
+    emptyResponse.status = 202
     setResponse(emptyResponse)
 
     const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`
@@ -53,7 +55,15 @@ export default function PinForm() {
   }
 
   async function handleScreenshotMode(e: any) {
+
+    emptyResponse.status = 202
+    setResponse(emptyResponse)
     setDemoMode((prev: boolean) => {
+      if (prev) {
+        emptyResponse.status = 0
+        setResponse(emptyResponse)
+      }
+
       !prev
         ? setText((oldText: string) => (oldText.length ? oldText : "123456"))
         : setText((oldText: string) => (oldText.length ? oldText : ""))
@@ -67,45 +77,45 @@ export default function PinForm() {
       noValidate
       className="grid-rows-12 grid h-full w-full grid-cols-1 place-items-center"
     >
-      <div className="row-span-3 grid grid-cols-1 space-y-4 px-6">
-        <p className="p-4 font-mono text-base text-white">PIN LOGIN</p>
+      <div className="mt-4 row-span-3 grid grid-cols-1 space-y-4">
+        <p className="pt-4 text-base font-bold text-neutral-content">Pin Login:</p>
         <input
           type="text"
           value={text}
           onChange={handleInputChange}
           placeholder="Ex 123456. Takes ~30-60 seconds"
-          className="w-72 appearance-none rounded-sm border-none bg-blue-haze py-1 px-2 leading-tight text-gray-700 focus:outline"
+          className="w-72 input focus:outline text-base-content"
         />
         <div className="m-auto w-full content-center gap-4 px-4">
           <button
             onClick={sendPin}
-            className="w-full rounded-sm bg-blue-600 py-1 text-sm font-medium uppercase text-white transition-all hover:bg-blue-800"
+            className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg w-full bg-secondary hover:bg-secondary-focus text-secondary-content py-1 text-sm font-medium uppercase transition-all"
             type="button"
           >
             Enter Pin
           </button>
         </div>
       </div>
-      <div className="h-full w-full py-4">
+      <label
+        htmlFor="screenshotMode"
+        className="w-full py-4 grid grid-cols-6 text-neutral-content hover:cursor-pointer"
+      >
+        <span className="col-start-2 col-span-3">Demo Mode?</span>
+        <input
+          onChange={handleScreenshotMode}
+          className="h-6 w-6 hover:cursor-pointer checkbox checkbox-secondary bg-secondary-focus"
+          id="screenshotMode"
+          type="checkbox"
+          defaultChecked={false}
+        />
+      </label>
+      <div className="h-full w-full">
         <ServerMessage
           response={response}
           demoMode={demoMode}
           waiting={waiting}
         />
       </div>
-      <label
-        htmlFor="screenshotMode"
-        className="w-full py-4 grid grid-cols-6 text-white hover:cursor-pointer"
-      >
-        <span className="col-start-2 col-span-3">Screenshot when done?</span>
-        <input
-          onChange={handleScreenshotMode}
-          className="h-6 w-6 hover:cursor-pointer"
-          id="screenshotMode"
-          type="checkbox"
-          defaultChecked={false}
-        />
-      </label>
     </form>
   )
 }

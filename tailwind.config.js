@@ -20,5 +20,9 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require("daisyui")],
+  daisyui: {
+    themes: ["light", "aqua"],
+    darkTheme: "aqua",
+  }
 }

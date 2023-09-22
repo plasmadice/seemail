@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="dark" lang="en">
-      <body className="flex h-screen place-items-center items-center overflow-hidden bg-white text-slate-500 antialiased dark:bg-firefly dark:text-slate-400">
+      <body className="text-primary-content bg-base-100 flex h-screen place-items-center items-center overflow-hidden antialiased">
         {children}
         <Analytics />
       </body>

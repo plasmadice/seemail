@@ -19,10 +19,10 @@ export default function Spinner({ duration = 90 }) {
         role='status'
       />
 
-      <p className='relative flex h-10 w-10 items-center justify-center text-white'>
+      <p className='relative flex h-10 w-10 items-center justify-center text-base-content'>
         {count > 0 ? count : 0}
       </p>
-      <p className='relative z-30 h-8 items-center justify-center font-medium text-white'>
+      <p className='relative z-30 h-8 items-center justify-center font-medium text-base-content'>
         30-60 seconds later...
       </p>
     </div>
