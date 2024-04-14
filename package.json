@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next ./node_modules && yarn"
+    "clean": "rm -rf .next ./node_modules && pnpm i && pnpm build && pnpm start"
   },
   "dependencies": {
     "@types/node": "^18.16.3",
