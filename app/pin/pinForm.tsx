@@ -75,7 +75,7 @@ export default function PinForm() {
     <form
       onSubmit={sendPin}
       noValidate
-      className="grid-rows-12 grid h-full w-full grid-cols-1 place-items-center"
+      className="grid h-full w-full grid-cols-1 place-items-center"
     >
       <div className="mt-4 row-span-3 grid grid-cols-1 space-y-4">
         <p className="pt-4 text-base font-bold text-neutral-content">Pin Login:</p>
@@ -83,7 +83,7 @@ export default function PinForm() {
           type="text"
           value={text}
           onChange={handleInputChange}
-          placeholder="Ex 123456. Takes ~30-60 seconds"
+          placeholder="Ex 123456. Takes ~30-90 seconds"
           className="w-72 input focus:outline text-base-content"
         />
         <div className="m-auto w-full content-center gap-4 px-4">

@@ -23,7 +23,7 @@ export default function Spinner({ duration = 90 }) {
         {count > 0 ? count : 0}
       </p>
       <p className='relative z-30 h-8 items-center justify-center font-medium text-base-content'>
-        30-60 seconds later...
+        30-90 seconds later...
       </p>
     </div>
   )
