@@ -1,4 +1,5 @@
 export const runtime = "edge"
+export const dynamic = 'force-dynamic'
 
 async function getCode() {
   const url = `${process.env.NEXT_PUBLIC_URL}/api/getEmailContents`
