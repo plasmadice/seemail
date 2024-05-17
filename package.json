@@ -10,6 +10,7 @@
     "clean": "rm -rf .next ./node_modules && pnpm i && pnpm build && pnpm start"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.0.12",
     "@types/node": "^18.16.3",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
