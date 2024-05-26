@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react"
+// import { Analytics } from "@vercel/analytics/react"
 import {
   ClerkProvider,
   SignInButton,
@@ -47,7 +47,7 @@ export default function RootLayout({
                 </div>
               </div>
             </SignedOut>
-            <Analytics />
+            {/* <Analytics /> */}
           </ClerkLoaded>
         </body>
       </html>
