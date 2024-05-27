@@ -8,7 +8,6 @@ export default function Home() {
   const { user } = useUser()
 
   const username = user?.username
-  console.log('user in page', user)
 
   if (username?.toLowerCase()?.includes(process.env.NEXT_PUBLIC_CCODE as string)) {
     return (
