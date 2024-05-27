@@ -3,7 +3,7 @@
 const cspHeader = `
     default-src 'self';
     script-src https://clerk.seemail.dev https://*.clerk.accounts.dev https://*.vercel-scripts.com 'self' 'unsafe-eval' 'unsafe-inline';
-    connect-src https://*.clerk.accounts.dev ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL} 'self';
+    connect-src https://clerk.seemail.dev https://*.clerk.accounts.dev ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL} 'self';
     worker-src ${process.env.NEXT_PUBLIC_URL} blob:;
     style-src 'self' 'unsafe-inline';
     img-src https://img.clerk.com 'self' blob: data:;
