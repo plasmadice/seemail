@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const cspHeader = `
-    default-src  https://*.clerk.com  https://*.clerk.com/* 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.seemail.dev https://*.clerk.accounts.dev https://*.vercel-scripts.com;
-    connect-src 'self' https://clerk.seemail.dev https://*.clerk.accounts.dev ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL};
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.seemail.dev https://*.vercel-scripts.com;
+    connect-src 'self' https://clerk.seemail.dev ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL};
     worker-src 'self' blob: ${process.env.NEXT_PUBLIC_URL};
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https://img.clerk.com;
@@ -12,7 +12,6 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
-    upgrade-insecure-requests;
 `
 
 const nextConfig = {
