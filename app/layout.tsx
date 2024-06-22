@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/react"
 import {
   ClerkProvider,
+  SignedIn,
   SignedOut,
   UserButton,
   RedirectToSignIn,
@@ -27,20 +28,22 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html className="dark" lang="en">
-        <body className="text-primary-content bg-base-100 flex h-screen place-items-center items-center overflow-hidden antialiased">
-            <ClerkLoaded>
-              <div className="flex flex-col gap-4 items-center mx-auto">
-                <UserButton />
-                {children}
-              </div>
-            </ClerkLoaded>
-        </body>
-      </html>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
-      <Analytics />
+      <ClerkLoaded>
+        <SignedIn>
+          <html className="dark" lang="en">
+            <body className="text-primary-content bg-base-100 flex h-screen place-items-center items-center overflow-hidden antialiased">
+                  <div className="flex flex-col gap-4 items-center mx-auto">
+                    <UserButton />
+                    {children}
+                  </div>
+            </body>
+          </html>
+        </SignedIn>
+        <SignedOut>
+          <RedirectToSignIn />
+        </SignedOut>
+        <Analytics />
+      </ClerkLoaded>
     </ClerkProvider>
   )
 }
