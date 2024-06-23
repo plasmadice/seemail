@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider signInForceRedirectUrl={'/'} signUpForceRedirectUrl={'/'}>
       <html className="dark" lang="en">
         <body className="text-primary-content bg-base-100 flex h-screen place-items-center items-center overflow-hidden antialiased">
             <ClerkLoaded>
