@@ -1,11 +1,4 @@
 import { Analytics } from "@vercel/analytics/react"
-import {
-  ClerkProvider,
-  SignedOut,
-  UserButton,
-  RedirectToSignIn,
-  ClerkLoaded
-} from '@clerk/nextjs'
 
 import "./globals.css"
 
@@ -26,21 +19,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider signInForceRedirectUrl={'/'} signUpForceRedirectUrl={'/'}>
+    <>
       <html className="dark" lang="en">
         <body className="text-primary-content bg-base-100 flex h-screen place-items-center items-center overflow-hidden antialiased">
-            <ClerkLoaded>
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-              <div className="flex flex-col gap-4 items-center mx-auto">
-                <UserButton />
-                {children}
-              </div>
-            </ClerkLoaded>
+          <div className="flex flex-col gap-4 items-center mx-auto">
+            {children}
+          </div>
         </body>
       </html>
       <Analytics />
-    </ClerkProvider>
+    </>
   )
 }

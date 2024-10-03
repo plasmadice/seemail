@@ -2,11 +2,11 @@
 
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.seemail.dev https://*.vercel-scripts.com;
-    connect-src 'self' https://clerk.seemail.dev ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL} https://enterpin-cdpo6kodna-uc.a.run.app;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel-scripts.com;
+    connect-src 'self' ${process.env.NEXT_PUBLIC_URL.replace('https', 'ws')} ${process.env.NEXT_PUBLIC_URL} https://enterpin-cdpo6kodna-uc.a.run.app;
     worker-src 'self' blob: ${process.env.NEXT_PUBLIC_URL};
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://img.clerk.com;
+    img-src 'self' blob: data:;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
