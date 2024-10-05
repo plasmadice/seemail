@@ -57,8 +57,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const browser = await puppeteer.launch({
       args: process.env.NODE_ENV.includes("development") ? [] : chromium.args,
       defaultViewport: process.env.NODE_ENV.includes("development") ? undefined : chromium.defaultViewport,
-      executablePath: process.env.NODE_ENV.includes("development") ? exePath : await chromium.executablePath(),
-      headless: process.env.NODE_ENV.includes("development") ? false : chromium.headless,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
     console.log("Browser opened");
 
