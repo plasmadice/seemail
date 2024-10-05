@@ -10,25 +10,27 @@
     "clean": "rm -rf .next ./node_modules && pnpm i && pnpm build && pnpm start"
   },
   "dependencies": {
+    "@sparticuz/chromium-min": "^109.0.6",
     "@types/node": "^18.16.3",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
     "@vercel/analytics": "^1.0.0",
     "eslint": "^8.39.0",
-    "eslint-config-next": "13.3.4",
+    "eslint-config-next": "14.2.14",
     "imapflow": "^1.0.128",
-    "next": "13.3.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "14.2.14",
+    "puppeteer-core": "^23.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^4.8.0",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/imapflow": "^1.0.13",
     "autoprefixer": "^10.4.14",
-    "daisyui": "^3.7.7",
+    "daisyui": "^4.12.12",
     "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.4.13"
   }
 }

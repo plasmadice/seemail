@@ -7,8 +7,6 @@ export const metadata = {
   applicationName: "seemail",
   keywords: ["seemail", "nextjs", "puppeteer"],
   authors: [{ name: "Josh", url: "https://hwhite.dev/" }],
-  themeColor: "slate",
-  colorScheme: "dark",
   title: "Seemail",
   description: "Automate adding authorized devices to your account.",
 }
