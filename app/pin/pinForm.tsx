@@ -30,7 +30,7 @@ export default function PinForm() {
     emptyResponse.status = 202
     setResponse(emptyResponse)
 
-    const url = `${process.env.ENTERPIN_URL}/?pin=${text.replace('-','')}&screenshots=${demoMode}`
+    const url = `${process.env.ENTERPIN_URL}/?pin=${text}&screenshots=${demoMode}`
 
     const res = await fetch(url, {
       cache: "no-store",
@@ -65,7 +65,7 @@ export default function PinForm() {
       }
 
       !prev
-        ? setText((oldText: string) => (oldText.length ? oldText : "123456"))
+        ? setText((oldText: string) => (oldText.length ? oldText : "12-34-56"))
         : setText((oldText: string) => (oldText.length ? oldText : ""))
       return !prev
     })
