@@ -1,97 +1,74 @@
-"use client";
-import { useState } from "react";
-import ServerMessage from "./../components/ServerMessage";
+"use client"
+import { useState } from "react"
+import ServerMessage from "./../components/ServerMessage"
 
 export default function PinForm() {
   type apiResponse = {
-    status: number;
-    body: string;
-    error: string | undefined;
-    imageStr: string | undefined;
-  };
+    status: number
+    body: string
+    error: string | undefined
+    imageStr: string | undefined
+  }
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState("")
   let emptyResponse: apiResponse = {
     status: 0,
     body: "",
     error: "",
     imageStr: "",
-  };
+  }
 
-  const [response, setResponse] = useState<apiResponse>(emptyResponse);
+  const [response, setResponse] = useState<apiResponse>(emptyResponse)
 
-  const [waiting, setWaiting] = useState(false);
-  const [demoMode, setDemoMode] = useState(false);
+  const [waiting, setWaiting] = useState(false)
+  const [demoMode, setDemoMode] = useState(false)
 
   async function sendPin(e: any) {
-    setWaiting(true);
-    e.preventDefault();
+    setWaiting(true)
+    e.preventDefault()
 
-    emptyResponse.status = 202;
-    setResponse(emptyResponse);
+    emptyResponse.status = 202
+    setResponse(emptyResponse)
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/enterpin?pin=${text}&screenshots=${demoMode}`;
+    const url = `${process.env.ENTERPIN_URL}/?pin=${text.replace('-','')}&screenshots=${demoMode}`
 
-    try {
-      const res = await fetch(url, {
-        cache: "no-store",
-      });
+    const res = await fetch(url, {
+      cache: "no-store",
+    })
 
-      const status = res.status;
-      let data: apiResponse = emptyResponse;
-
-      if (res.headers.get("content-type")?.includes("application/json")) {
-        data = await res.json();
-      } else {
-        console.error("Unexpected response format", await res.text());
-        data = {
-          ...emptyResponse,
-          status,
-          error: "Unexpected response format",
-        };
-      }
-
-      const body = data?.body || "";
-      const error = data?.error;
-      const imageStr = data?.imageStr || undefined;
-
-      console.log("data in sendPin", data);
-      setResponse({ body, status, error, imageStr });
-    } catch (error) {
-      console.error("Error while sending pin:", error);
-      setResponse({
-        ...emptyResponse,
-        status: 500,
-        error: "Something went wrong while sending the pin.",
-      });
-    } finally {
-      await handleClearInput();
-    }
+    const status = res.status
+    const data: apiResponse = await res.json()
+    const body = data.body
+    const error = data?.error
+    const imageStr = data?.imageStr ? data.imageStr : undefined
+    setResponse({ body, status, error, imageStr })
+    await handleClearInput()
   }
 
   async function handleClearInput() {
-    setText((prev: string) => (response.status ? "" : prev));
-    setWaiting(false);
+    setText((prev: string) => (response.status ? "" : prev))
+    setWaiting(false)
   }
 
   function handleInputChange(e: any) {
-    setText(e.target.value);
+    setText(e.target.value)
   }
 
   async function handleScreenshotMode(e: any) {
-    emptyResponse.status = 202;
-    setResponse(emptyResponse);
+
+    emptyResponse.status = 202
+    setResponse(emptyResponse)
     setDemoMode((prev: boolean) => {
       if (prev) {
-        emptyResponse.status = 0;
-        setResponse(emptyResponse);
+        emptyResponse.status = 0
+        setResponse(emptyResponse)
       }
 
       !prev
         ? setText((oldText: string) => (oldText.length ? oldText : "123456"))
-        : setText((oldText: string) => (oldText.length ? oldText : ""));
-      return !prev;
-    });
+        : setText((oldText: string) => (oldText.length ? oldText : ""))
+      return !prev
+    })
   }
 
   return (
@@ -140,5 +117,5 @@ export default function PinForm() {
         />
       </div>
     </form>
-  );
+  )
 }
