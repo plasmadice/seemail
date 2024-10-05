@@ -15,6 +15,12 @@ const cspHeader = `
 `
 
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: [
+      'puppeteer-core',
+      '@sparticuz/chromium'
+    ]
+  },
   images: {
     remotePatterns: [
       {
